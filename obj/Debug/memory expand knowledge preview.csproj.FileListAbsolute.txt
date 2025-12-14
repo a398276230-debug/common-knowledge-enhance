@@ -1,0 +1,256 @@
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\memory expand knowledge preview.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\memory expand knowledge preview.pdb
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\0Harmony.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\Assembly-CSharp.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\RimTalkMemoryPatch.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.CoreModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.IMGUIModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.TextRenderingModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\NAudio.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\NVorbis.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.AudioModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\Unity.Collections.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\Unity.Burst.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\Unity.Mathematics.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\com.rlabrecque.steamworks.net.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\Assembly-CSharp-firstpass.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.AssetBundleModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.PhysicsModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\Unity.TextMeshPro.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\ISharpZipLib.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.InputLegacyModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.ImageConversionModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.UI.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\netstandard.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.SharedInternalsModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.PropertiesModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\Unity.Burst.Unsafe.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.UIModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.Physics2DModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.AnimationModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\bin\Debug\UnityEngine.SpriteShapeModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\obj\Debug\memory e.0700D4EC.Up2Date
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\obj\Debug\memory expand knowledge preview.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\memory expand knowledge preview\obj\Debug\memory expand knowledge preview.pdb
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\memory expand knowledge preview.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\memory expand knowledge preview.pdb
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\NAudio.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\NVorbis.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.AudioModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\Unity.Collections.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\Unity.Burst.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\Unity.Mathematics.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\com.rlabrecque.steamworks.net.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\Assembly-CSharp-firstpass.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.AssetBundleModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.PhysicsModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\Unity.TextMeshPro.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\ISharpZipLib.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.InputLegacyModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.ImageConversionModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.UI.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\netstandard.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.SharedInternalsModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.PropertiesModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\Unity.Burst.Unsafe.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.UIModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.Physics2DModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.AnimationModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\bin\Debug\UnityEngine.SpriteShapeModule.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\obj\Debug\memory e.0700D4EC.Up2Date
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\obj\Debug\memory expand knowledge preview.dll
+F:\干活\rimtalk\memory expand\memory expand knowledge preview\obj\Debug\memory expand knowledge preview.pdb
+F:\干活\rimtalk\memory expand\Source\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
+F:\干活\rimtalk\memory expand\Source\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
+F:\干活\rimtalk\memory expand\Source\obj\Debug\memory expand knowledge preview.dll
+F:\干活\rimtalk\memory expand\Source\obj\Debug\memory expand knowledge preview.pdb
+F:\干活\rimtalk\memory expand\Source\bin\Debug\memory expand knowledge preview.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\memory expand knowledge preview.pdb
+F:\干活\rimtalk\memory expand\Source\bin\Debug\NAudio.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\NVorbis.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.AudioModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\Unity.Collections.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\Unity.Burst.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\Unity.Mathematics.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\com.rlabrecque.steamworks.net.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\Assembly-CSharp-firstpass.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.AssetBundleModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.PhysicsModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\Unity.TextMeshPro.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\ISharpZipLib.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.InputLegacyModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.ImageConversionModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.UI.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\netstandard.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.SharedInternalsModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.PropertiesModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\Unity.Burst.Unsafe.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.UIModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.Physics2DModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.AnimationModule.dll
+F:\干活\rimtalk\memory expand\Source\bin\Debug\UnityEngine.SpriteShapeModule.dll
+F:\干活\rimtalk\memory expand\Source\obj\Debug\memory e.0700D4EC.Up2Date
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\memory expand knowledge preview.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\memory expand knowledge preview.pdb
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\0Harmony.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\Assembly-CSharp.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.CoreModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.IMGUIModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.TextRenderingModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\NAudio.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\NVorbis.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.AudioModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\Unity.Collections.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\Unity.Burst.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\Unity.Mathematics.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\com.rlabrecque.steamworks.net.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\Assembly-CSharp-firstpass.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.AssetBundleModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.PhysicsModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\Unity.TextMeshPro.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\ISharpZipLib.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.InputLegacyModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.ImageConversionModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.UI.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\netstandard.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.SharedInternalsModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.PropertiesModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\Unity.Burst.Unsafe.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.UIModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.Physics2DModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.AnimationModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\bin\Debug\UnityEngine.SpriteShapeModule.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\obj\Debug\memory e.0700D4EC.Up2Date
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\obj\Debug\memory expand knowledge preview.dll
+D:\steam\steamapps\common\RimWorld\Mods\MEKP\Source\obj\Debug\memory expand knowledge preview.pdb
+f:\干活\rimtalk\Source\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
+f:\干活\rimtalk\Source\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
+f:\干活\rimtalk\Source\obj\Debug\memory expand knowledge preview.dll
+f:\干活\rimtalk\Source\obj\Debug\memory expand knowledge preview.pdb
+f:\干活\rimtalk\Source\bin\Debug\memory expand knowledge preview.dll
+f:\干活\rimtalk\Source\bin\Debug\memory expand knowledge preview.pdb
+f:\干活\rimtalk\Source\bin\Debug\NAudio.dll
+f:\干活\rimtalk\Source\bin\Debug\NVorbis.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.AudioModule.dll
+f:\干活\rimtalk\Source\bin\Debug\Unity.Collections.dll
+f:\干活\rimtalk\Source\bin\Debug\Unity.Burst.dll
+f:\干活\rimtalk\Source\bin\Debug\Unity.Mathematics.dll
+f:\干活\rimtalk\Source\bin\Debug\com.rlabrecque.steamworks.net.dll
+f:\干活\rimtalk\Source\bin\Debug\Assembly-CSharp-firstpass.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.AssetBundleModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.PhysicsModule.dll
+f:\干活\rimtalk\Source\bin\Debug\Unity.TextMeshPro.dll
+f:\干活\rimtalk\Source\bin\Debug\ISharpZipLib.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.InputLegacyModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.ImageConversionModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.UI.dll
+f:\干活\rimtalk\Source\bin\Debug\netstandard.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.SharedInternalsModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.PropertiesModule.dll
+f:\干活\rimtalk\Source\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+f:\干活\rimtalk\Source\bin\Debug\Unity.Burst.Unsafe.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.UIModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.Physics2DModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.AnimationModule.dll
+f:\干活\rimtalk\Source\bin\Debug\UnityEngine.SpriteShapeModule.dll
+f:\干活\rimtalk\Source\obj\Debug\memory e.0700D4EC.Up2Date
+F:\work\rimtalk\Source\bin\Debug\memory expand knowledge preview.dll
+F:\work\rimtalk\Source\bin\Debug\memory expand knowledge preview.pdb
+F:\work\rimtalk\Source\bin\Debug\NAudio.dll
+F:\work\rimtalk\Source\bin\Debug\NVorbis.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.AudioModule.dll
+F:\work\rimtalk\Source\bin\Debug\Unity.Collections.dll
+F:\work\rimtalk\Source\bin\Debug\Unity.Burst.dll
+F:\work\rimtalk\Source\bin\Debug\Unity.Mathematics.dll
+F:\work\rimtalk\Source\bin\Debug\com.rlabrecque.steamworks.net.dll
+F:\work\rimtalk\Source\bin\Debug\Assembly-CSharp-firstpass.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.AssetBundleModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.PhysicsModule.dll
+F:\work\rimtalk\Source\bin\Debug\Unity.TextMeshPro.dll
+F:\work\rimtalk\Source\bin\Debug\ISharpZipLib.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.InputLegacyModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.ImageConversionModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.UI.dll
+F:\work\rimtalk\Source\bin\Debug\netstandard.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.SharedInternalsModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.PropertiesModule.dll
+F:\work\rimtalk\Source\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+F:\work\rimtalk\Source\bin\Debug\Unity.Burst.Unsafe.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.UIModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.Physics2DModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.AnimationModule.dll
+F:\work\rimtalk\Source\bin\Debug\UnityEngine.SpriteShapeModule.dll
+F:\work\rimtalk\Source\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
+F:\work\rimtalk\Source\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
+F:\work\rimtalk\Source\obj\Debug\memory e.0700D4EC.Up2Date
+F:\work\rimtalk\Source\obj\Debug\memory expand knowledge preview.dll
+F:\work\rimtalk\Source\obj\Debug\memory expand knowledge preview.pdb
+F:\Source\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
+F:\Source\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
+F:\Source\bin\Debug\RimTalk_ExpandedPreview.dll
+F:\Source\bin\Debug\RimTalk_ExpandedPreview.pdb
+F:\Source\bin\Debug\NAudio.dll
+F:\Source\bin\Debug\NVorbis.dll
+F:\Source\bin\Debug\UnityEngine.AudioModule.dll
+F:\Source\bin\Debug\Unity.Collections.dll
+F:\Source\bin\Debug\Unity.Burst.dll
+F:\Source\bin\Debug\Unity.Mathematics.dll
+F:\Source\bin\Debug\com.rlabrecque.steamworks.net.dll
+F:\Source\bin\Debug\Assembly-CSharp-firstpass.dll
+F:\Source\bin\Debug\UnityEngine.AssetBundleModule.dll
+F:\Source\bin\Debug\UnityEngine.PhysicsModule.dll
+F:\Source\bin\Debug\Unity.TextMeshPro.dll
+F:\Source\bin\Debug\ISharpZipLib.dll
+F:\Source\bin\Debug\UnityEngine.InputLegacyModule.dll
+F:\Source\bin\Debug\UnityEngine.PerformanceReportingModule.dll
+F:\Source\bin\Debug\UnityEngine.ImageConversionModule.dll
+F:\Source\bin\Debug\UnityEngine.ScreenCaptureModule.dll
+F:\Source\bin\Debug\UnityEngine.UI.dll
+F:\Source\bin\Debug\netstandard.dll
+F:\Source\bin\Debug\UnityEngine.SharedInternalsModule.dll
+F:\Source\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
+F:\Source\bin\Debug\UnityEngine.PropertiesModule.dll
+F:\Source\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
+F:\Source\bin\Debug\Unity.Burst.Unsafe.dll
+F:\Source\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
+F:\Source\bin\Debug\UnityEngine.UIModule.dll
+F:\Source\bin\Debug\UnityEngine.Physics2DModule.dll
+F:\Source\bin\Debug\UnityEngine.AnimationModule.dll
+F:\Source\bin\Debug\UnityEngine.SpriteShapeModule.dll
+F:\Source\obj\Debug\memory e.0700D4EC.Up2Date
+F:\Source\obj\Debug\RimTalk_ExpandedPreview.dll
+F:\Source\obj\Debug\RimTalk_ExpandedPreview.pdb

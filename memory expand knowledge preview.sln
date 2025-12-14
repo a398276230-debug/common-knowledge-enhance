@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11304.174 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "memory expand knowledge preview", "memory expand knowledge preview.csproj", "{04E8934C-AAC0-49C3-84DA-7B917C56BA0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04E8934C-AAC0-49C3-84DA-7B917C56BA0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E8934C-AAC0-49C3-84DA-7B917C56BA0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04E8934C-AAC0-49C3-84DA-7B917C56BA0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E8934C-AAC0-49C3-84DA-7B917C56BA0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A72709C-C2FC-4931-9557-8B7E63FD7920}
+	EndGlobalSection
+EndGlobal
