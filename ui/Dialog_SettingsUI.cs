@@ -23,17 +23,15 @@ namespace RimTalk_ExpandedPreview
         // 绘制窗口内容的核心方法
         public override void DoWindowContents(Rect inRect)
         {
-            // *** 已修正 ***
-            // 通过主Mod类来访问静态的CustomKeywordSettings实例
-            RimTalk_ExpandedPreviewMod.CustomKeywordSettings.DoWindowContents(inRect);
+            RimTalk_ExpandedPreviewMod.Settings.DoWindowContents(inRect);
         }
 
         // 当窗口关闭时调用，用来保存设置
         public override void PostClose()
         {
-            base.PostClose(); // 调用基类方法
-            RimTalk_ExpandedPreviewMod.CustomKeywordSettings.Write(); // 在这里保存设置
-            Log.Message("[RimTalk_ExpandedPreview] Settings saved."); // 可选：添加日志方便调试
+            base.PostClose();
+            RimTalk_ExpandedPreviewMod.Settings.Write();
+            Log.Message("[RimTalk_ExpandedPreview] Settings saved.");
         }
     }
 }

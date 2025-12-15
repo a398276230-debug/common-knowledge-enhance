@@ -1,745 +1,745 @@
-using UnityEngine;
-using Verse;
-using RimWorld;
-using RimTalk.Memory;
-using RimTalk.Memory.UI;
-using System.Collections.Generic; // ? Ìí¼Ó
+// using UnityEngine;
+// using Verse;
+// using RimWorld;
+// using RimTalk.Memory;
+// using RimTalk.Memory.UI;
+// using System.Collections.Generic; // ? æ·»åŠ 
 
-namespace RimTalk.MemoryPatch
-{
-    public class RimTalkMemoryPatchSettings : ModSettings
-    {
-        // ? ĞÂÔö£ºÌáÊ¾´Ê¹æ·¶»¯¹æÔò
-        /// <summary>
-        /// Ìæ»»¹æÔò¶¨Òå
-        /// </summary>
-        public class ReplacementRule : IExposable
-        {
-            public string pattern = "";
-            public string replacement = "";
-            public bool isEnabled = true;
+// namespace RimTalk.MemoryPatch
+// {
+//     public class RimTalkMemoryPatchSettings : ModSettings
+//     {
+//         // ? æ–°å¢ï¼šæç¤ºè¯è§„èŒƒåŒ–è§„åˆ™
+//         /// <summary>
+//         /// æ›¿æ¢è§„åˆ™å®šä¹‰
+//         /// </summary>
+//         public class ReplacementRule : IExposable
+//         {
+//             public string pattern = "";
+//             public string replacement = "";
+//             public bool isEnabled = true;
             
-            public ReplacementRule() { }
+//             public ReplacementRule() { }
             
-            public ReplacementRule(string pattern, string replacement, bool isEnabled = true)
-            {
-                this.pattern = pattern;
-                this.replacement = replacement;
-                this.isEnabled = isEnabled;
-            }
+//             public ReplacementRule(string pattern, string replacement, bool isEnabled = true)
+//             {
+//                 this.pattern = pattern;
+//                 this.replacement = replacement;
+//                 this.isEnabled = isEnabled;
+//             }
             
-            public void ExposeData()
-            {
-                Scribe_Values.Look(ref pattern, "pattern", "");
-                Scribe_Values.Look(ref replacement, "replacement", "");
-                Scribe_Values.Look(ref isEnabled, "isEnabled", true);
-            }
-        }
+//             public void ExposeData()
+//             {
+//                 Scribe_Values.Look(ref pattern, "pattern", "");
+//                 Scribe_Values.Look(ref replacement, "replacement", "");
+//                 Scribe_Values.Look(ref isEnabled, "isEnabled", true);
+//             }
+//         }
         
-        // ? ÌáÊ¾´Ê¹æ·¶»¯¹æÔòÁĞ±í
-        public List<ReplacementRule> normalizationRules = new List<ReplacementRule>
-        {
-            new ReplacementRule(@"\(Player\)", "Master", true),
-            new ReplacementRule(@"\(Íæ¼Ò\)", "Ö÷ÈË", true)
-        };
+//         // ? æç¤ºè¯è§„èŒƒåŒ–è§„åˆ™åˆ—è¡¨
+//         public List<ReplacementRule> normalizationRules = new List<ReplacementRule>
+//         {
+//             new ReplacementRule(@"\(Player\)", "Master", true),
+//             new ReplacementRule(@"\(ç©å®¶\)", "ä¸»äºº", true)
+//         };
         
-        // ËÄ²ã¼ÇÒäÈİÁ¿ÅäÖÃ
-        public int maxActiveMemories = 6;
-        public int maxSituationalMemories = 20;
-        public int maxEventLogMemories = 50;
+//         // å››å±‚è®°å¿†å®¹é‡é…ç½®
+//         public int maxActiveMemories = 6;
+//         public int maxSituationalMemories = 20;
+//         public int maxEventLogMemories = 50;
         
-        // Ë¥¼õËÙÂÊÉèÖÃ
-        public float scmDecayRate = 0.01f;
-        public float elsDecayRate = 0.005f;
-        public float clpaDecayRate = 0.001f;
+//         // è¡°å‡é€Ÿç‡è®¾ç½®
+//         public float scmDecayRate = 0.01f;
+//         public float elsDecayRate = 0.005f;
+//         public float clpaDecayRate = 0.001f;
         
-        // ×Ü½áÉèÖÃ
-        public bool enableDailySummarization = true;
-        public int summarizationHour = 0;
-        public bool useAISummarization = true;
-        public int maxSummaryLength = 80;
+//         // æ€»ç»“è®¾ç½®
+//         public bool enableDailySummarization = true;
+//         public int summarizationHour = 0;
+//         public bool useAISummarization = true;
+//         public int maxSummaryLength = 80;
         
-        // CLPA ¹éµµÉèÖÃ
-        public bool enableAutoArchive = true;
-        public int archiveIntervalDays = 7;
-        public int maxArchiveMemories = 30;
+//         // CLPA å½’æ¡£è®¾ç½®
+//         public bool enableAutoArchive = true;
+//         public int archiveIntervalDays = 7;
+//         public int maxArchiveMemories = 30;
 
-        // AI ÅäÖÃ
-        public bool useRimTalkAIConfig = true;
-        public string independentApiKey = "";
-        public string independentApiUrl = "";
-        public string independentModel = "gpt-3.5-turbo";
-        public string independentProvider = "OpenAI";
-        public bool enablePromptCaching = true;
+//         // AI é…ç½®
+//         public bool useRimTalkAIConfig = true;
+//         public string independentApiKey = "";
+//         public string independentApiUrl = "";
+//         public string independentModel = "gpt-3.5-turbo";
+//         public string independentProvider = "OpenAI";
+//         public bool enablePromptCaching = true;
 
-        // UI ÉèÖÃ
-        public bool enableMemoryUI = true;
+//         // UI è®¾ç½®
+//         public bool enableMemoryUI = true;
         
-        // ¼ÇÒäÀàĞÍ¿ª¹Ø
-        public bool enableActionMemory = true;
-        public bool enableConversationMemory = true;
+//         // è®°å¿†ç±»å‹å¼€å…³
+//         public bool enableActionMemory = true;
+//         public bool enableConversationMemory = true;
         
-        // Pawn×´Ì¬³£Ê¶×Ô¶¯Éú³É
-        public bool enablePawnStatusKnowledge = false;
+//         // PawnçŠ¶æ€å¸¸è¯†è‡ªåŠ¨ç”Ÿæˆ
+//         public bool enablePawnStatusKnowledge = false;
         
-        // ÊÂ¼ş¼ÇÂ¼³£Ê¶×Ô¶¯Éú³É
-        public bool enableEventRecordKnowledge = false;
+//         // äº‹ä»¶è®°å½•å¸¸è¯†è‡ªåŠ¨ç”Ÿæˆ
+//         public bool enableEventRecordKnowledge = false;
 
-        // ¶Ô»°»º´æÉèÖÃ
-        public bool enableConversationCache = true;
-        public int conversationCacheSize = 200;
-        public int conversationCacheExpireDays = 14;
+//         // å¯¹è¯ç¼“å­˜è®¾ç½®
+//         public bool enableConversationCache = true;
+//         public int conversationCacheSize = 200;
+//         public int conversationCacheExpireDays = 14;
         
-        // ÌáÊ¾´Ê»º´æÉèÖÃ
-        public bool enablePromptCache = true;
-        public int promptCacheSize = 100;
-        public int promptCacheExpireMinutes = 60;
+//         // æç¤ºè¯ç¼“å­˜è®¾ç½®
+//         public bool enablePromptCache = true;
+//         public int promptCacheSize = 100;
+//         public int promptCacheExpireMinutes = 60;
 
-        // ¶¯Ì¬×¢ÈëÉèÖÃ
-        public bool useDynamicInjection = true;
-        public int maxInjectedMemories = 10;
-        public int maxInjectedKnowledge = 5;
+//         // åŠ¨æ€æ³¨å…¥è®¾ç½®
+//         public bool useDynamicInjection = true;
+//         public int maxInjectedMemories = 10;
+//         public int maxInjectedKnowledge = 5;
         
-        // ¶¯Ì¬×¢ÈëÈ¨ÖØÅäÖÃ
-        public float weightTimeDecay = 0.3f;
-        public float weightImportance = 0.3f;
-        public float weightKeywordMatch = 0.4f;
+//         // åŠ¨æ€æ³¨å…¥æƒé‡é…ç½®
+//         public float weightTimeDecay = 0.3f;
+//         public float weightImportance = 0.3f;
+//         public float weightKeywordMatch = 0.4f;
         
-        // ×¢ÈëãĞÖµÉèÖÃ
-        public float memoryScoreThreshold = 0.15f;
-        public float knowledgeScoreThreshold = 0.1f;
+//         // æ³¨å…¥é˜ˆå€¼è®¾ç½®
+//         public float memoryScoreThreshold = 0.15f;
+//         public float knowledgeScoreThreshold = 0.1f;
         
-        // ×ÔÊÊÓ¦ãĞÖµÉèÖÃ
-        public bool enableAdaptiveThreshold = false;
-        public bool autoApplyAdaptiveThreshold = false;
+//         // è‡ªé€‚åº”é˜ˆå€¼è®¾ç½®
+//         public bool enableAdaptiveThreshold = false;
+//         public bool autoApplyAdaptiveThreshold = false;
         
-        // Ö÷¶¯¼ÇÒäÕÙ»Ø
-        public bool enableProactiveRecall = false;
-        public float recallTriggerChance = 0.15f;
+//         // ä¸»åŠ¨è®°å¿†å¬å›
+//         public bool enableProactiveRecall = false;
+//         public float recallTriggerChance = 0.15f;
         
-        // ³£Ê¶¿âÈ¨ÖØÅäÖÃ
-        public float knowledgeBaseScore = 0.05f;
-        public float knowledgeJaccardWeight = 0.7f;
-        public float knowledgeTagWeight = 0.3f;
-        public float knowledgeMatchBonus = 0.08f;
+//         // å¸¸è¯†åº“æƒé‡é…ç½®
+//         public float knowledgeBaseScore = 0.05f;
+//         public float knowledgeJaccardWeight = 0.7f;
+//         public float knowledgeTagWeight = 0.3f;
+//         public float knowledgeMatchBonus = 0.08f;
 
-        // UIÕÛµş×´Ì¬
-        private static bool expandDynamicInjection = true;
-        private static bool expandMemoryCapacity = false;
-        private static bool expandDecayRates = false;
-        private static bool expandSummarization = false;
-        private static bool expandAIConfig = true;
-        private static bool expandMemoryTypes = false;
-        private static bool expandExperimentalFeatures = true;
+//         // UIæŠ˜å çŠ¶æ€
+//         private static bool expandDynamicInjection = true;
+//         private static bool expandMemoryCapacity = false;
+//         private static bool expandDecayRates = false;
+//         private static bool expandSummarization = false;
+//         private static bool expandAIConfig = true;
+//         private static bool expandMemoryTypes = false;
+//         private static bool expandExperimentalFeatures = true;
         
-        private static Vector2 scrollPosition = Vector2.zero;
+//         private static Vector2 scrollPosition = Vector2.zero;
 
-        public override void ExposeData()
-        {
-            base.ExposeData();
+//         public override void ExposeData()
+//         {
+//             base.ExposeData();
             
-            // ? ĞòÁĞ»¯ÌáÊ¾´Ê¹æ·¶»¯¹æÔò
-            Scribe_Collections.Look(ref normalizationRules, "normalizationRules", LookMode.Deep);
+//             // ? åºåˆ—åŒ–æç¤ºè¯è§„èŒƒåŒ–è§„åˆ™
+//             Scribe_Collections.Look(ref normalizationRules, "normalizationRules", LookMode.Deep);
             
-            // ? ¼æÈİĞÔ£ºÈç¹û¼ÓÔØºóÎª null£¬³õÊ¼»¯Ä¬ÈÏ¹æÔò
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && normalizationRules == null)
-            {
-                normalizationRules = new List<ReplacementRule>
-                {
-                    new ReplacementRule(@"\(Player\)", "Master", true),
-                    new ReplacementRule(@"\(Íæ¼Ò\)", "Ö÷ÈË", true)
-                };
-            }
+//             // ? å…¼å®¹æ€§ï¼šå¦‚æœåŠ è½½åä¸º nullï¼Œåˆå§‹åŒ–é»˜è®¤è§„åˆ™
+//             if (Scribe.mode == LoadSaveMode.PostLoadInit && normalizationRules == null)
+//             {
+//                 normalizationRules = new List<ReplacementRule>
+//                 {
+//                     new ReplacementRule(@"\(Player\)", "Master", true),
+//                     new ReplacementRule(@"\(ç©å®¶\)", "ä¸»äºº", true)
+//                 };
+//             }
             
-            Scribe_Values.Look(ref maxActiveMemories, "fourLayer_maxActiveMemories", 6);
-            Scribe_Values.Look(ref maxSituationalMemories, "fourLayer_maxSituationalMemories", 20);
-            Scribe_Values.Look(ref maxEventLogMemories, "fourLayer_maxEventLogMemories", 50);
+//             Scribe_Values.Look(ref maxActiveMemories, "fourLayer_maxActiveMemories", 6);
+//             Scribe_Values.Look(ref maxSituationalMemories, "fourLayer_maxSituationalMemories", 20);
+//             Scribe_Values.Look(ref maxEventLogMemories, "fourLayer_maxEventLogMemories", 50);
             
-            Scribe_Values.Look(ref scmDecayRate, "fourLayer_scmDecayRate", 0.01f);
-            Scribe_Values.Look(ref elsDecayRate, "fourLayer_elsDecayRate", 0.005f);
-            Scribe_Values.Look(ref clpaDecayRate, "fourLayer_clpaDecayRate", 0.001f);
+//             Scribe_Values.Look(ref scmDecayRate, "fourLayer_scmDecayRate", 0.01f);
+//             Scribe_Values.Look(ref elsDecayRate, "fourLayer_elsDecayRate", 0.005f);
+//             Scribe_Values.Look(ref clpaDecayRate, "fourLayer_clpaDecayRate", 0.001f);
             
-            Scribe_Values.Look(ref enableDailySummarization, "fourLayer_enableDailySummarization", true);
-            Scribe_Values.Look(ref summarizationHour, "fourLayer_summarizationHour", 0);
-            Scribe_Values.Look(ref useAISummarization, "fourLayer_useAISummarization", true);
-            Scribe_Values.Look(ref maxSummaryLength, "fourLayer_maxSummaryLength", 80);
+//             Scribe_Values.Look(ref enableDailySummarization, "fourLayer_enableDailySummarization", true);
+//             Scribe_Values.Look(ref summarizationHour, "fourLayer_summarizationHour", 0);
+//             Scribe_Values.Look(ref useAISummarization, "fourLayer_useAISummarization", true);
+//             Scribe_Values.Look(ref maxSummaryLength, "fourLayer_maxSummaryLength", 80);
             
-            Scribe_Values.Look(ref enableAutoArchive, "fourLayer_enableAutoArchive", true);
-            Scribe_Values.Look(ref archiveIntervalDays, "fourLayer_archiveIntervalDays", 7);
-            Scribe_Values.Look(ref maxArchiveMemories, "fourLayer_maxArchiveMemories", 30);
+//             Scribe_Values.Look(ref enableAutoArchive, "fourLayer_enableAutoArchive", true);
+//             Scribe_Values.Look(ref archiveIntervalDays, "fourLayer_archiveIntervalDays", 7);
+//             Scribe_Values.Look(ref maxArchiveMemories, "fourLayer_maxArchiveMemories", 30);
 
-            Scribe_Values.Look(ref useRimTalkAIConfig, "ai_useRimTalkConfig", true);
-            Scribe_Values.Look(ref independentApiKey, "ai_independentApiKey", "");
-            Scribe_Values.Look(ref independentApiUrl, "ai_independentApiUrl", "");
-            Scribe_Values.Look(ref independentModel, "ai_independentModel", "gpt-3.5-turbo");
-            Scribe_Values.Look(ref independentProvider, "ai_independentProvider", "OpenAI");
-            Scribe_Values.Look(ref enablePromptCaching, "ai_enablePromptCaching", true);
+//             Scribe_Values.Look(ref useRimTalkAIConfig, "ai_useRimTalkConfig", true);
+//             Scribe_Values.Look(ref independentApiKey, "ai_independentApiKey", "");
+//             Scribe_Values.Look(ref independentApiUrl, "ai_independentApiUrl", "");
+//             Scribe_Values.Look(ref independentModel, "ai_independentModel", "gpt-3.5-turbo");
+//             Scribe_Values.Look(ref independentProvider, "ai_independentProvider", "OpenAI");
+//             Scribe_Values.Look(ref enablePromptCaching, "ai_enablePromptCaching", true);
 
-            Scribe_Values.Look(ref enableMemoryUI, "memoryPatch_enableMemoryUI", true);
-            Scribe_Values.Look(ref enableActionMemory, "memoryPatch_enableActionMemory", true);
-            Scribe_Values.Look(ref enableConversationMemory, "memoryPatch_enableConversationMemory", true);
-            Scribe_Values.Look(ref enablePawnStatusKnowledge, "pawnStatus_enablePawnStatusKnowledge", false);
-            Scribe_Values.Look(ref enableEventRecordKnowledge, "eventRecord_enableEventRecordKnowledge", false);
+//             Scribe_Values.Look(ref enableMemoryUI, "memoryPatch_enableMemoryUI", true);
+//             Scribe_Values.Look(ref enableActionMemory, "memoryPatch_enableActionMemory", true);
+//             Scribe_Values.Look(ref enableConversationMemory, "memoryPatch_enableConversationMemory", true);
+//             Scribe_Values.Look(ref enablePawnStatusKnowledge, "pawnStatus_enablePawnStatusKnowledge", false);
+//             Scribe_Values.Look(ref enableEventRecordKnowledge, "eventRecord_enableEventRecordKnowledge", false);
 
-            Scribe_Values.Look(ref enableConversationCache, "cache_enableConversationCache", true);
-            Scribe_Values.Look(ref conversationCacheSize, "cache_conversationCacheSize", 200);
-            Scribe_Values.Look(ref conversationCacheExpireDays, "cache_conversationCacheExpireDays", 14);
-            Scribe_Values.Look(ref enablePromptCache, "cache_enablePromptCache", true);
-            Scribe_Values.Look(ref promptCacheSize, "cache_promptCacheSize", 100);
-            Scribe_Values.Look(ref promptCacheExpireMinutes, "cache_promptCacheExpireMinutes", 60);
+//             Scribe_Values.Look(ref enableConversationCache, "cache_enableConversationCache", true);
+//             Scribe_Values.Look(ref conversationCacheSize, "cache_conversationCacheSize", 200);
+//             Scribe_Values.Look(ref conversationCacheExpireDays, "cache_conversationCacheExpireDays", 14);
+//             Scribe_Values.Look(ref enablePromptCache, "cache_enablePromptCache", true);
+//             Scribe_Values.Look(ref promptCacheSize, "cache_promptCacheSize", 100);
+//             Scribe_Values.Look(ref promptCacheExpireMinutes, "cache_promptCacheExpireMinutes", 60);
             
-            Scribe_Values.Look(ref useDynamicInjection, "dynamic_useDynamicInjection", true);
-            Scribe_Values.Look(ref maxInjectedMemories, "dynamic_maxInjectedMemories", 10);
-            Scribe_Values.Look(ref maxInjectedKnowledge, "dynamic_maxInjectedKnowledge", 5);
-            Scribe_Values.Look(ref weightTimeDecay, "dynamic_weightTimeDecay", 0.3f);
-            Scribe_Values.Look(ref weightImportance, "dynamic_weightImportance", 0.3f);
-            Scribe_Values.Look(ref weightKeywordMatch, "dynamic_weightKeywordMatch", 0.4f);
-            Scribe_Values.Look(ref memoryScoreThreshold, "dynamic_memoryScoreThreshold", 0.15f);
-            Scribe_Values.Look(ref knowledgeScoreThreshold, "dynamic_knowledgeScoreThreshold", 0.1f);
+//             Scribe_Values.Look(ref useDynamicInjection, "dynamic_useDynamicInjection", true);
+//             Scribe_Values.Look(ref maxInjectedMemories, "dynamic_maxInjectedMemories", 10);
+//             Scribe_Values.Look(ref maxInjectedKnowledge, "dynamic_maxInjectedKnowledge", 5);
+//             Scribe_Values.Look(ref weightTimeDecay, "dynamic_weightTimeDecay", 0.3f);
+//             Scribe_Values.Look(ref weightImportance, "dynamic_weightImportance", 0.3f);
+//             Scribe_Values.Look(ref weightKeywordMatch, "dynamic_weightKeywordMatch", 0.4f);
+//             Scribe_Values.Look(ref memoryScoreThreshold, "dynamic_memoryScoreThreshold", 0.15f);
+//             Scribe_Values.Look(ref knowledgeScoreThreshold, "dynamic_knowledgeScoreThreshold", 0.1f);
             
-            Scribe_Values.Look(ref enableAdaptiveThreshold, "adaptive_enableAdaptiveThreshold", false);
-            Scribe_Values.Look(ref autoApplyAdaptiveThreshold, "adaptive_autoApplyAdaptiveThreshold", false);
-            Scribe_Values.Look(ref enableProactiveRecall, "recall_enableProactiveRecall", false);
-            Scribe_Values.Look(ref recallTriggerChance, "recall_triggerChance", 0.15f);
+//             Scribe_Values.Look(ref enableAdaptiveThreshold, "adaptive_enableAdaptiveThreshold", false);
+//             Scribe_Values.Look(ref autoApplyAdaptiveThreshold, "adaptive_autoApplyAdaptiveThreshold", false);
+//             Scribe_Values.Look(ref enableProactiveRecall, "recall_enableProactiveRecall", false);
+//             Scribe_Values.Look(ref recallTriggerChance, "recall_triggerChance", 0.15f);
 
-            Scribe_Values.Look(ref knowledgeBaseScore, "knowledge_baseScore", 0.05f);
-            Scribe_Values.Look(ref knowledgeJaccardWeight, "knowledge_jaccardWeight", 0.7f);
-            Scribe_Values.Look(ref knowledgeTagWeight, "knowledge_tagWeight", 0.3f);
-            Scribe_Values.Look(ref knowledgeMatchBonus, "knowledge_matchBonus", 0.08f);
-        }
+//             Scribe_Values.Look(ref knowledgeBaseScore, "knowledge_baseScore", 0.05f);
+//             Scribe_Values.Look(ref knowledgeJaccardWeight, "knowledge_jaccardWeight", 0.7f);
+//             Scribe_Values.Look(ref knowledgeTagWeight, "knowledge_tagWeight", 0.3f);
+//             Scribe_Values.Look(ref knowledgeMatchBonus, "knowledge_matchBonus", 0.08f);
+//         }
 
-        public void DoSettingsWindowContents(Rect inRect)
-        {
-            Listing_Standard listingStandard = new Listing_Standard();
+//         public void DoSettingsWindowContents(Rect inRect)
+//         {
+//             Listing_Standard listingStandard = new Listing_Standard();
             
-            Rect viewRect = new Rect(0f, 0f, inRect.width - 20f, 2400f); // ? Ôö¼Ó¸ß¶ÈÒÔÈİÄÉĞÂÄÚÈİ
-            Widgets.BeginScrollView(inRect, ref scrollPosition, viewRect);
-            listingStandard.Begin(viewRect);
+//             Rect viewRect = new Rect(0f, 0f, inRect.width - 20f, 2400f); // ? å¢åŠ é«˜åº¦ä»¥å®¹çº³æ–°å†…å®¹
+//             Widgets.BeginScrollView(inRect, ref scrollPosition, viewRect);
+//             listingStandard.Begin(viewRect);
 
-            // ? ĞÂÔö£ºÌáÊ¾´Ê¹æ·¶»¯ÉèÖÃ
-            Text.Font = GameFont.Medium;
-            listingStandard.Label("ÌáÊ¾´Ê¹æ·¶»¯");
-            Text.Font = GameFont.Small;
+//             // ? æ–°å¢ï¼šæç¤ºè¯è§„èŒƒåŒ–è®¾ç½®
+//             Text.Font = GameFont.Medium;
+//             listingStandard.Label("æç¤ºè¯è§„èŒƒåŒ–");
+//             Text.Font = GameFont.Small;
             
-            GUI.color = Color.gray;
-            listingStandard.Label("×Ô¶¨ÒåÌæ»»¹æÔò£¬ÔÚ·¢ËÍ¸ø AI Ç°×Ô¶¯´¦ÀíÌáÊ¾´Ê");
-            GUI.color = Color.white;
+//             GUI.color = Color.gray;
+//             listingStandard.Label("è‡ªå®šä¹‰æ›¿æ¢è§„åˆ™ï¼Œåœ¨å‘é€ç»™ AI å‰è‡ªåŠ¨å¤„ç†æç¤ºè¯");
+//             GUI.color = Color.white;
             
-            listingStandard.Gap(6f);
+//             listingStandard.Gap(6f);
             
-            DrawPromptNormalizationSettings(listingStandard);
+//             DrawPromptNormalizationSettings(listingStandard);
             
-            listingStandard.Gap();
-            listingStandard.GapLine();
+//             listingStandard.Gap();
+//             listingStandard.GapLine();
 
-            // ³£Ê¶¿â¹ÜÀí
-            Text.Font = GameFont.Medium;
-            listingStandard.Label("³£Ê¶¿â¹ÜÀí");
-            Text.Font = GameFont.Small;
+//             // å¸¸è¯†åº“ç®¡ç†
+//             Text.Font = GameFont.Medium;
+//             listingStandard.Label("å¸¸è¯†åº“ç®¡ç†");
+//             Text.Font = GameFont.Small;
             
-            GUI.color = Color.gray;
-            listingStandard.Label("¹ÜÀíÈ«¾Ö³£Ê¶¿â£¬ÎªAI¶Ô»°Ìá¹©±³¾°ÖªÊ¶");
-            GUI.color = Color.white;
+//             GUI.color = Color.gray;
+//             listingStandard.Label("ç®¡ç†å…¨å±€å¸¸è¯†åº“ï¼Œä¸ºAIå¯¹è¯æä¾›èƒŒæ™¯çŸ¥è¯†");
+//             GUI.color = Color.white;
             
-            listingStandard.Gap(6f);
+//             listingStandard.Gap(6f);
             
-            Rect knowledgeButtonRect = listingStandard.GetRect(35f);
-            if (Widgets.ButtonText(knowledgeButtonRect, "´ò¿ª³£Ê¶¿â"))
-            {
-                OpenCommonKnowledgeDialog();
-            }
+//             Rect knowledgeButtonRect = listingStandard.GetRect(35f);
+//             if (Widgets.ButtonText(knowledgeButtonRect, "æ‰“å¼€å¸¸è¯†åº“"))
+//             {
+//                 OpenCommonKnowledgeDialog();
+//             }
             
-            listingStandard.Gap();
-            listingStandard.GapLine();
+//             listingStandard.Gap();
+//             listingStandard.GapLine();
 
-            // ¶¯Ì¬×¢ÈëÉèÖÃ
-            DrawCollapsibleSection(listingStandard, "¶¯Ì¬×¢ÈëÉèÖÃ", ref expandDynamicInjection, () => DrawDynamicInjectionSettings(listingStandard));
-            DrawCollapsibleSection(listingStandard, "¼ÇÒäÈİÁ¿ÅäÖÃ", ref expandMemoryCapacity, () => DrawMemoryCapacitySettings(listingStandard));
-            DrawCollapsibleSection(listingStandard, "¼ÇÒäË¥¼õÅäÖÃ", ref expandDecayRates, () => DrawDecaySettings(listingStandard));
-            DrawCollapsibleSection(listingStandard, "¼ÇÒä×Ü½áÉèÖÃ", ref expandSummarization, () => DrawSummarizationSettings(listingStandard));
+//             // åŠ¨æ€æ³¨å…¥è®¾ç½®
+//             DrawCollapsibleSection(listingStandard, "åŠ¨æ€æ³¨å…¥è®¾ç½®", ref expandDynamicInjection, () => DrawDynamicInjectionSettings(listingStandard));
+//             DrawCollapsibleSection(listingStandard, "è®°å¿†å®¹é‡é…ç½®", ref expandMemoryCapacity, () => DrawMemoryCapacitySettings(listingStandard));
+//             DrawCollapsibleSection(listingStandard, "è®°å¿†è¡°å‡é…ç½®", ref expandDecayRates, () => DrawDecaySettings(listingStandard));
+//             DrawCollapsibleSection(listingStandard, "è®°å¿†æ€»ç»“è®¾ç½®", ref expandSummarization, () => DrawSummarizationSettings(listingStandard));
 
-            if (useAISummarization)
-            {
-                DrawCollapsibleSection(listingStandard, "AI ÅäÖÃ", ref expandAIConfig, () => DrawAIConfigSettings(listingStandard));
-            }
+//             if (useAISummarization)
+//             {
+//                 DrawCollapsibleSection(listingStandard, "AI é…ç½®", ref expandAIConfig, () => DrawAIConfigSettings(listingStandard));
+//             }
 
-            DrawCollapsibleSection(listingStandard, "¼ÇÒäÀàĞÍ¿ª¹Ø", ref expandMemoryTypes, () => DrawMemoryTypesSettings(listingStandard));
-            DrawCollapsibleSection(listingStandard, "?? ÊµÑéĞÔ¹¦ÄÜ", ref expandExperimentalFeatures, () => DrawExperimentalFeaturesSettings(listingStandard));
+//             DrawCollapsibleSection(listingStandard, "è®°å¿†ç±»å‹å¼€å…³", ref expandMemoryTypes, () => DrawMemoryTypesSettings(listingStandard));
+//             DrawCollapsibleSection(listingStandard, "?? å®éªŒæ€§åŠŸèƒ½", ref expandExperimentalFeatures, () => DrawExperimentalFeaturesSettings(listingStandard));
 
-            // µ÷ÊÔ¹¤¾ß
-            listingStandard.Gap();
-            Text.Font = GameFont.Small;
-            GUI.color = new Color(1f, 0.9f, 0.7f);
-            listingStandard.Label("µ÷ÊÔ¹¤¾ß");
-            GUI.color = Color.white;
+//             // è°ƒè¯•å·¥å…·
+//             listingStandard.Gap();
+//             Text.Font = GameFont.Small;
+//             GUI.color = new Color(1f, 0.9f, 0.7f);
+//             listingStandard.Label("è°ƒè¯•å·¥å…·");
+//             GUI.color = Color.white;
             
-            Rect previewButtonRect = listingStandard.GetRect(35f);
-            if (Widgets.ButtonText(previewButtonRect, "×¢ÈëÔ¤ÀÀÆ÷"))
-            {
-                Find.WindowStack.Add(new RimTalk.Memory.Debug.Dialog_InjectionPreview());
-            }
+//             Rect previewButtonRect = listingStandard.GetRect(35f);
+//             if (Widgets.ButtonText(previewButtonRect, "æ³¨å…¥é¢„è§ˆå™¨"))
+//             {
+//                 Find.WindowStack.Add(new RimTalk.Memory.Debug.Dialog_InjectionPreview());
+//             }
             
-            GUI.color = Color.gray;
-            listingStandard.Label("ÊµÊ±Ô¤ÀÀ¼ÇÒä/³£Ê¶×¢ÈëĞ§¹û");
-            GUI.color = Color.white;
+//             GUI.color = Color.gray;
+//             listingStandard.Label("å®æ—¶é¢„è§ˆè®°å¿†/å¸¸è¯†æ³¨å…¥æ•ˆæœ");
+//             GUI.color = Color.white;
 
-            listingStandard.End();
-            Widgets.EndScrollView();
+//             listingStandard.End();
+//             Widgets.EndScrollView();
             
-            // ? v3.3.2.37: ÔÚÉèÖÃ´°¿ÚÃ¿Ö¡¸üĞÂÊ±¸üĞÂ¹æÔò£¨ÓÃ»§ĞŞ¸ÄºóÁ¢¼´ÉúĞ§£©
-            PromptNormalizer.UpdateRules(normalizationRules);
-        }
+//             // ? v3.3.2.37: åœ¨è®¾ç½®çª—å£æ¯å¸§æ›´æ–°æ—¶æ›´æ–°è§„åˆ™ï¼ˆç”¨æˆ·ä¿®æ”¹åç«‹å³ç”Ÿæ•ˆï¼‰
+//             PromptNormalizer.UpdateRules(normalizationRules);
+//         }
 
-        private void DrawCollapsibleSection(Listing_Standard listing, string title, ref bool expanded, System.Action drawContent)
-        {
-            Rect headerRect = listing.GetRect(30f);
-            Widgets.DrawBoxSolid(headerRect, new Color(0.2f, 0.2f, 0.2f, 0.5f));
+//         private void DrawCollapsibleSection(Listing_Standard listing, string title, ref bool expanded, System.Action drawContent)
+//         {
+//             Rect headerRect = listing.GetRect(30f);
+//             Widgets.DrawBoxSolid(headerRect, new Color(0.2f, 0.2f, 0.2f, 0.5f));
             
-            Text.Font = GameFont.Medium;
-            Rect labelRect = new Rect(headerRect.x + 30f, headerRect.y + 3f, headerRect.width - 30f, headerRect.height);
-            Widgets.Label(labelRect, title);
-            Text.Font = GameFont.Small;
+//             Text.Font = GameFont.Medium;
+//             Rect labelRect = new Rect(headerRect.x + 30f, headerRect.y + 3f, headerRect.width - 30f, headerRect.height);
+//             Widgets.Label(labelRect, title);
+//             Text.Font = GameFont.Small;
             
-            Rect iconRect = new Rect(headerRect.x + 5f, headerRect.y + 7f, 20f, 20f);
-            if (Widgets.ButtonImage(iconRect, expanded ? TexButton.Collapse : TexButton.Reveal))
-            {
-                expanded = !expanded;
-            }
+//             Rect iconRect = new Rect(headerRect.x + 5f, headerRect.y + 7f, 20f, 20f);
+//             if (Widgets.ButtonImage(iconRect, expanded ? TexButton.Collapse : TexButton.Reveal))
+//             {
+//                 expanded = !expanded;
+//             }
             
-            listing.Gap(3f);
+//             listing.Gap(3f);
             
-            if (expanded)
-            {
-                listing.Gap(3f);
-                drawContent?.Invoke();
-                listing.Gap(6f);
-            }
+//             if (expanded)
+//             {
+//                 listing.Gap(3f);
+//                 drawContent?.Invoke();
+//                 listing.Gap(6f);
+//             }
             
-            listing.GapLine();
-        }
+//             listing.GapLine();
+//         }
 
-        private void DrawDynamicInjectionSettings(Listing_Standard listing)
-        {
-            listing.CheckboxLabeled("ÆôÓÃ¶¯Ì¬×¢Èë", ref useDynamicInjection);
+//         private void DrawDynamicInjectionSettings(Listing_Standard listing)
+//         {
+//             listing.CheckboxLabeled("å¯ç”¨åŠ¨æ€æ³¨å…¥", ref useDynamicInjection);
             
-            if (useDynamicInjection)
-            {
-                GUI.color = new Color(0.8f, 1f, 0.8f);
-                listing.Label("  ÖÇÄÜÑ¡Ôñ×îÏà¹ØµÄ¼ÇÒäºÍ³£Ê¶×¢Èëµ½AI¶Ô»°ÖĞ");
-                GUI.color = Color.white;
+//             if (useDynamicInjection)
+//             {
+//                 GUI.color = new Color(0.8f, 1f, 0.8f);
+//                 listing.Label("  æ™ºèƒ½é€‰æ‹©æœ€ç›¸å…³çš„è®°å¿†å’Œå¸¸è¯†æ³¨å…¥åˆ°AIå¯¹è¯ä¸­");
+//                 GUI.color = Color.white;
                 
-                listing.Gap();
+//                 listing.Gap();
                 
-                listing.Label($"×î´ó×¢Èë¼ÇÒäÊı: {maxInjectedMemories}");
-                maxInjectedMemories = (int)listing.Slider(maxInjectedMemories, 1, 20);
+//                 listing.Label($"æœ€å¤§æ³¨å…¥è®°å¿†æ•°: {maxInjectedMemories}");
+//                 maxInjectedMemories = (int)listing.Slider(maxInjectedMemories, 1, 20);
                 
-                listing.Label($"×î´ó×¢Èë³£Ê¶Êı: {maxInjectedKnowledge}");
-                maxInjectedKnowledge = (int)listing.Slider(maxInjectedKnowledge, 1, 10);
+//                 listing.Label($"æœ€å¤§æ³¨å…¥å¸¸è¯†æ•°: {maxInjectedKnowledge}");
+//                 maxInjectedKnowledge = (int)listing.Slider(maxInjectedKnowledge, 1, 10);
                 
-                listing.Gap();
+//                 listing.Gap();
                 
-                listing.Label($"¼ÇÒäÆÀ·ÖãĞÖµ: {memoryScoreThreshold:P0}");
-                memoryScoreThreshold = listing.Slider(memoryScoreThreshold, 0f, 1f);
+//                 listing.Label($"è®°å¿†è¯„åˆ†é˜ˆå€¼: {memoryScoreThreshold:P0}");
+//                 memoryScoreThreshold = listing.Slider(memoryScoreThreshold, 0f, 1f);
                 
-                listing.Label($"³£Ê¶ÆÀ·ÖãĞÖµ: {knowledgeScoreThreshold:P0}");
-                knowledgeScoreThreshold = listing.Slider(knowledgeScoreThreshold, 0f, 1f);
-            }
-        }
+//                 listing.Label($"å¸¸è¯†è¯„åˆ†é˜ˆå€¼: {knowledgeScoreThreshold:P0}");
+//                 knowledgeScoreThreshold = listing.Slider(knowledgeScoreThreshold, 0f, 1f);
+//             }
+//         }
 
-        private void DrawMemoryCapacitySettings(Listing_Standard listing)
-        {
-            listing.Label($"SCM (¶ÌÆÚ¼ÇÒä): {maxSituationalMemories} Ìõ");
-            maxSituationalMemories = (int)listing.Slider(maxSituationalMemories, 10, 50);
+//         private void DrawMemoryCapacitySettings(Listing_Standard listing)
+//         {
+//             listing.Label($"SCM (çŸ­æœŸè®°å¿†): {maxSituationalMemories} æ¡");
+//             maxSituationalMemories = (int)listing.Slider(maxSituationalMemories, 10, 50);
             
-            listing.Label($"ELS (ÖĞÆÚ¼ÇÒä): {maxEventLogMemories} Ìõ");
-            maxEventLogMemories = (int)listing.Slider(maxEventLogMemories, 20, 100);
-        }
+//             listing.Label($"ELS (ä¸­æœŸè®°å¿†): {maxEventLogMemories} æ¡");
+//             maxEventLogMemories = (int)listing.Slider(maxEventLogMemories, 20, 100);
+//         }
 
-        private void DrawDecaySettings(Listing_Standard listing)
-        {
-            listing.Label($"SCM Ë¥¼õÂÊ: {scmDecayRate:P1}");
-            scmDecayRate = listing.Slider(scmDecayRate, 0.001f, 0.05f);
+//         private void DrawDecaySettings(Listing_Standard listing)
+//         {
+//             listing.Label($"SCM è¡°å‡ç‡: {scmDecayRate:P1}");
+//             scmDecayRate = listing.Slider(scmDecayRate, 0.001f, 0.05f);
             
-            listing.Label($"ELS Ë¥¼õÂÊ: {elsDecayRate:P1}");
-            elsDecayRate = listing.Slider(elsDecayRate, 0.0005f, 0.02f);
-        }
+//             listing.Label($"ELS è¡°å‡ç‡: {elsDecayRate:P1}");
+//             elsDecayRate = listing.Slider(elsDecayRate, 0.0005f, 0.02f);
+//         }
 
-        private void DrawSummarizationSettings(Listing_Standard listing)
-        {
-            listing.CheckboxLabeled("ÆôÓÃÃ¿ÈÕ×Ü½á", ref enableDailySummarization);
+//         private void DrawSummarizationSettings(Listing_Standard listing)
+//         {
+//             listing.CheckboxLabeled("å¯ç”¨æ¯æ—¥æ€»ç»“", ref enableDailySummarization);
             
-            if (enableDailySummarization)
-            {
-                listing.Label($"´¥·¢Ê±¼ä: {summarizationHour}Ê±");
-                summarizationHour = (int)listing.Slider(summarizationHour, 0, 23);
-            }
+//             if (enableDailySummarization)
+//             {
+//                 listing.Label($"è§¦å‘æ—¶é—´: {summarizationHour}æ—¶");
+//                 summarizationHour = (int)listing.Slider(summarizationHour, 0, 23);
+//             }
             
-            listing.CheckboxLabeled("ÆôÓÃ×Ô¶¯¹éµµ", ref enableAutoArchive);
-        }
+//             listing.CheckboxLabeled("å¯ç”¨è‡ªåŠ¨å½’æ¡£", ref enableAutoArchive);
+//         }
 
-        private void DrawAIConfigSettings(Listing_Standard listing)
-        {
-            listing.CheckboxLabeled("ÓÅÏÈÊ¹ÓÃ RimTalk ÅäÖÃ", ref useRimTalkAIConfig);
+//         private void DrawAIConfigSettings(Listing_Standard listing)
+//         {
+//             listing.CheckboxLabeled("ä¼˜å…ˆä½¿ç”¨ RimTalk é…ç½®", ref useRimTalkAIConfig);
             
-            if (useRimTalkAIConfig)
-            {
-                GUI.color = new Color(0.8f, 1f, 0.8f);
-                listing.Label("  ½«×Ô¶¯¸úËæ RimTalk Mod µÄ AI ÅäÖÃ");
-                GUI.color = Color.white;
-                listing.Gap();
-            }
+//             if (useRimTalkAIConfig)
+//             {
+//                 GUI.color = new Color(0.8f, 1f, 0.8f);
+//                 listing.Label("  å°†è‡ªåŠ¨è·Ÿéš RimTalk Mod çš„ AI é…ç½®");
+//                 GUI.color = Color.white;
+//                 listing.Gap();
+//             }
             
-            listing.Gap();
+//             listing.Gap();
             
-            // ? v3.3.8: AI Ìá¹©ÉÌÑ¡Ôñ
-            listing.Label("AI Ìá¹©ÉÌ:");
-            GUI.color = Color.gray;
-            listing.Label($"  µ±Ç°: {independentProvider}");
-            GUI.color = Color.white;
+//             // ? v3.3.8: AI æä¾›å•†é€‰æ‹©
+//             listing.Label("AI æä¾›å•†:");
+//             GUI.color = Color.gray;
+//             listing.Label($"  å½“å‰: {independentProvider}");
+//             GUI.color = Color.white;
             
-            // Ìá¹©ÉÌÑ¡Ôñ°´Å¥
-            Rect providerHeaderRect = listing.GetRect(25f);
-            Widgets.DrawBoxSolid(providerHeaderRect, new Color(0.15f, 0.15f, 0.15f, 0.5f));
-            Widgets.Label(providerHeaderRect.ContractedBy(5f), "Ñ¡ÔñÌá¹©ÉÌ");
+//             // æä¾›å•†é€‰æ‹©æŒ‰é’®
+//             Rect providerHeaderRect = listing.GetRect(25f);
+//             Widgets.DrawBoxSolid(providerHeaderRect, new Color(0.15f, 0.15f, 0.15f, 0.5f));
+//             Widgets.Label(providerHeaderRect.ContractedBy(5f), "é€‰æ‹©æä¾›å•†");
             
-            Rect providerButtonRect1 = listing.GetRect(30f);
-            float buttonWidth = (providerButtonRect1.width - 20f) / 3f;
+//             Rect providerButtonRect1 = listing.GetRect(30f);
+//             float buttonWidth = (providerButtonRect1.width - 20f) / 3f;
             
-            // µÚÒ»ĞĞ£ºOpenAI, DeepSeek, Player2
-            Rect openaiRect = new Rect(providerButtonRect1.x, providerButtonRect1.y, buttonWidth, 30f);
-            Rect deepseekRect = new Rect(providerButtonRect1.x + buttonWidth + 10f, providerButtonRect1.y, buttonWidth, 30f);
-            Rect player2Rect = new Rect(providerButtonRect1.x + 2 * (buttonWidth + 10f), providerButtonRect1.y, buttonWidth, 30f);
+//             // ç¬¬ä¸€è¡Œï¼šOpenAI, DeepSeek, Player2
+//             Rect openaiRect = new Rect(providerButtonRect1.x, providerButtonRect1.y, buttonWidth, 30f);
+//             Rect deepseekRect = new Rect(providerButtonRect1.x + buttonWidth + 10f, providerButtonRect1.y, buttonWidth, 30f);
+//             Rect player2Rect = new Rect(providerButtonRect1.x + 2 * (buttonWidth + 10f), providerButtonRect1.y, buttonWidth, 30f);
             
-            bool isOpenAI = independentProvider == "OpenAI";
-            bool isDeepSeek = independentProvider == "DeepSeek";
-            bool isPlayer2 = independentProvider == "Player2";
+//             bool isOpenAI = independentProvider == "OpenAI";
+//             bool isDeepSeek = independentProvider == "DeepSeek";
+//             bool isPlayer2 = independentProvider == "Player2";
             
-            GUI.color = isOpenAI ? new Color(0.5f, 1f, 0.5f) : Color.white;
-            if (Widgets.ButtonText(openaiRect, "OpenAI"))
-            {
-                independentProvider = "OpenAI";
-                independentModel = "gpt-3.5-turbo";
-                independentApiUrl = "https://api.openai.com/v1/chat/completions";
-            }
+//             GUI.color = isOpenAI ? new Color(0.5f, 1f, 0.5f) : Color.white;
+//             if (Widgets.ButtonText(openaiRect, "OpenAI"))
+//             {
+//                 independentProvider = "OpenAI";
+//                 independentModel = "gpt-3.5-turbo";
+//                 independentApiUrl = "https://api.openai.com/v1/chat/completions";
+//             }
             
-            GUI.color = isDeepSeek ? new Color(0.5f, 0.7f, 1f) : Color.white;
-            if (Widgets.ButtonText(deepseekRect, "DeepSeek"))
-            {
-                independentProvider = "DeepSeek";
-                independentModel = "deepseek-chat";
-                independentApiUrl = "https://api.deepseek.com/v1/chat/completions";
-            }
+//             GUI.color = isDeepSeek ? new Color(0.5f, 0.7f, 1f) : Color.white;
+//             if (Widgets.ButtonText(deepseekRect, "DeepSeek"))
+//             {
+//                 independentProvider = "DeepSeek";
+//                 independentModel = "deepseek-chat";
+//                 independentApiUrl = "https://api.deepseek.com/v1/chat/completions";
+//             }
             
-            GUI.color = isPlayer2 ? new Color(1f, 0.8f, 0.5f) : Color.white;
-            if (Widgets.ButtonText(player2Rect, "Player2"))
-            {
-                independentProvider = "Player2";
-                independentModel = "gpt-4o";
-                independentApiUrl = "https://api.player2.game/v1/chat/completions";
-            }
-            GUI.color = Color.white;
+//             GUI.color = isPlayer2 ? new Color(1f, 0.8f, 0.5f) : Color.white;
+//             if (Widgets.ButtonText(player2Rect, "Player2"))
+//             {
+//                 independentProvider = "Player2";
+//                 independentModel = "gpt-4o";
+//                 independentApiUrl = "https://api.player2.game/v1/chat/completions";
+//             }
+//             GUI.color = Color.white;
             
-            // µÚ¶şĞĞ£ºGoogle, Custom
-            Rect providerButtonRect2 = listing.GetRect(30f);
-            Rect googleRect = new Rect(providerButtonRect2.x, providerButtonRect2.y, buttonWidth, 30f);
-            Rect customRect = new Rect(providerButtonRect2.x + buttonWidth + 10f, providerButtonRect2.y, buttonWidth, 30f);
+//             // ç¬¬äºŒè¡Œï¼šGoogle, Custom
+//             Rect providerButtonRect2 = listing.GetRect(30f);
+//             Rect googleRect = new Rect(providerButtonRect2.x, providerButtonRect2.y, buttonWidth, 30f);
+//             Rect customRect = new Rect(providerButtonRect2.x + buttonWidth + 10f, providerButtonRect2.y, buttonWidth, 30f);
             
-            bool isGoogle = independentProvider == "Google";
-            bool isCustom = independentProvider == "Custom";
+//             bool isGoogle = independentProvider == "Google";
+//             bool isCustom = independentProvider == "Custom";
             
-            GUI.color = isGoogle ? new Color(1f, 0.5f, 0.5f) : Color.white;
-            if (Widgets.ButtonText(googleRect, "Google"))
-            {
-                independentProvider = "Google";
-                independentModel = "gemini-2.0-flash-exp";
-                independentApiUrl = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent";
-            }
+//             GUI.color = isGoogle ? new Color(1f, 0.5f, 0.5f) : Color.white;
+//             if (Widgets.ButtonText(googleRect, "Google"))
+//             {
+//                 independentProvider = "Google";
+//                 independentModel = "gemini-2.0-flash-exp";
+//                 independentApiUrl = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent";
+//             }
             
-            GUI.color = isCustom ? new Color(0.7f, 0.7f, 0.7f) : Color.white;
-            if (Widgets.ButtonText(customRect, "Custom"))
-            {
-                independentProvider = "Custom";
-                independentModel = "custom-model";
-                independentApiUrl = "https://your-api-url.com/v1/chat/completions";
-            }
-            GUI.color = Color.white;
+//             GUI.color = isCustom ? new Color(0.7f, 0.7f, 0.7f) : Color.white;
+//             if (Widgets.ButtonText(customRect, "Custom"))
+//             {
+//                 independentProvider = "Custom";
+//                 independentModel = "custom-model";
+//                 independentApiUrl = "https://your-api-url.com/v1/chat/completions";
+//             }
+//             GUI.color = Color.white;
             
-            listing.Gap();
+//             listing.Gap();
             
-            // Ìá¹©ÉÌËµÃ÷
-            GUI.color = new Color(0.7f, 0.9f, 1f);
-            if (independentProvider == "OpenAI")
-            {
-                listing.Label("?? OpenAI GPT ÏµÁĞÄ£ĞÍ£¬ÎÈ¶¨¿É¿¿");
-                listing.Label("   ÍÆ¼öÄ£ĞÍ: gpt-3.5-turbo, gpt-4");
-            }
-            else if (independentProvider == "DeepSeek")
-            {
-                listing.Label("?? DeepSeek ÖĞÎÄÓÅ»¯Ä£ĞÍ£¬ĞÔ¼Û±È¸ß");
-                listing.Label("   ÍÆ¼öÄ£ĞÍ: deepseek-chat, deepseek-coder");
-            }
-            else if (independentProvider == "Player2")
-            {
-                listing.Label("?? Player2 ÓÎÏ·ÓÅ»¯ AI£¬Ö§³Ö±¾µØ¿Í»§¶Ë");
-                listing.Label("   ÍÆ¼öÄ£ĞÍ: gpt-4o, gpt-4-turbo");
-            }
-            else if (independentProvider == "Google")
-            {
-                listing.Label("?? Google Gemini ÏµÁĞ£¬¶àÄ£Ì¬ÄÜÁ¦Ç¿");
-                listing.Label("   ÍÆ¼öÄ£ĞÍ: gemini-2.0-flash-exp");
-            }
-            else if (independentProvider == "Custom")
-            {
-                listing.Label("?? ×Ô¶¨Òå API ¶Ëµã£¬Ö§³ÖµÚÈı·½´úÀí");
-                listing.Label("   ÇëÊÖ¶¯ÅäÖÃ API URL ºÍ Model");
-            }
-            GUI.color = Color.white;
+//             // æä¾›å•†è¯´æ˜
+//             GUI.color = new Color(0.7f, 0.9f, 1f);
+//             if (independentProvider == "OpenAI")
+//             {
+//                 listing.Label("?? OpenAI GPT ç³»åˆ—æ¨¡å‹ï¼Œç¨³å®šå¯é ");
+//                 listing.Label("   æ¨èæ¨¡å‹: gpt-3.5-turbo, gpt-4");
+//             }
+//             else if (independentProvider == "DeepSeek")
+//             {
+//                 listing.Label("?? DeepSeek ä¸­æ–‡ä¼˜åŒ–æ¨¡å‹ï¼Œæ€§ä»·æ¯”é«˜");
+//                 listing.Label("   æ¨èæ¨¡å‹: deepseek-chat, deepseek-coder");
+//             }
+//             else if (independentProvider == "Player2")
+//             {
+//                 listing.Label("?? Player2 æ¸¸æˆä¼˜åŒ– AIï¼Œæ”¯æŒæœ¬åœ°å®¢æˆ·ç«¯");
+//                 listing.Label("   æ¨èæ¨¡å‹: gpt-4o, gpt-4-turbo");
+//             }
+//             else if (independentProvider == "Google")
+//             {
+//                 listing.Label("?? Google Gemini ç³»åˆ—ï¼Œå¤šæ¨¡æ€èƒ½åŠ›å¼º");
+//                 listing.Label("   æ¨èæ¨¡å‹: gemini-2.0-flash-exp");
+//             }
+//             else if (independentProvider == "Custom")
+//             {
+//                 listing.Label("?? è‡ªå®šä¹‰ API ç«¯ç‚¹ï¼Œæ”¯æŒç¬¬ä¸‰æ–¹ä»£ç†");
+//                 listing.Label("   è¯·æ‰‹åŠ¨é…ç½® API URL å’Œ Model");
+//             }
+//             GUI.color = Color.white;
             
-            listing.Gap();
+//             listing.Gap();
             
-            // API ÅäÖÃ
-            listing.Label("API Key:");
-            independentApiKey = listing.TextEntry(independentApiKey);
+//             // API é…ç½®
+//             listing.Label("API Key:");
+//             independentApiKey = listing.TextEntry(independentApiKey);
             
-            listing.Label("API URL:");
-            independentApiUrl = listing.TextEntry(independentApiUrl);
+//             listing.Label("API URL:");
+//             independentApiUrl = listing.TextEntry(independentApiUrl);
             
-            listing.Label("Model:");
-            independentModel = listing.TextEntry(independentModel);
+//             listing.Label("Model:");
+//             independentModel = listing.TextEntry(independentModel);
             
-            listing.Gap();
+//             listing.Gap();
             
-            // Prompt Caching Ñ¡Ïî
-            listing.CheckboxLabeled("ÆôÓÃ Prompt Caching", ref enablePromptCaching);
+//             // Prompt Caching é€‰é¡¹
+//             listing.CheckboxLabeled("å¯ç”¨ Prompt Caching", ref enablePromptCaching);
             
-            if (enablePromptCaching)
-            {
-                GUI.color = new Color(0.8f, 1f, 0.8f);
-                if (independentProvider == "OpenAI")
-                {
-                    listing.Label("  ? OpenAI Ö§³Ö Prompt Caching (Beta)");
-                    listing.Label("  ÊÊÓÃÄ£ĞÍ: gpt-4o, gpt-4-turbo");
-                }
-                else if (independentProvider == "DeepSeek")
-                {
-                    listing.Label("  ? DeepSeek Ö§³Ö Prompt Caching");
-                    listing.Label("  ¿É½ÚÊ¡Ô¼ 50% ·ÑÓÃ");
-                }
-                else if (independentProvider == "Player2")
-                {
-                    listing.Label("  ? Player2 Ö§³Ö Prompt Caching");
-                    listing.Label("  ±¾µØ¿Í»§¶Ë×Ô¶¯»º´æ");
-                }
-                else if (independentProvider == "Google")
-                {
-                    listing.Label("  ? Google Gemini Ôİ²»Ö§³Ö Prompt Caching");
-                }
-                else if (independentProvider == "Custom")
-                {
-                    listing.Label("  ?? È¡¾öÓÚÄúµÄ×Ô¶¨Òå API ÊµÏÖ");
-                }
-                GUI.color = Color.white;
-            }
+//             if (enablePromptCaching)
+//             {
+//                 GUI.color = new Color(0.8f, 1f, 0.8f);
+//                 if (independentProvider == "OpenAI")
+//                 {
+//                     listing.Label("  ? OpenAI æ”¯æŒ Prompt Caching (Beta)");
+//                     listing.Label("  é€‚ç”¨æ¨¡å‹: gpt-4o, gpt-4-turbo");
+//                 }
+//                 else if (independentProvider == "DeepSeek")
+//                 {
+//                     listing.Label("  ? DeepSeek æ”¯æŒ Prompt Caching");
+//                     listing.Label("  å¯èŠ‚çœçº¦ 50% è´¹ç”¨");
+//                 }
+//                 else if (independentProvider == "Player2")
+//                 {
+//                     listing.Label("  ? Player2 æ”¯æŒ Prompt Caching");
+//                     listing.Label("  æœ¬åœ°å®¢æˆ·ç«¯è‡ªåŠ¨ç¼“å­˜");
+//                 }
+//                 else if (independentProvider == "Google")
+//                 {
+//                     listing.Label("  ? Google Gemini æš‚ä¸æ”¯æŒ Prompt Caching");
+//                 }
+//                 else if (independentProvider == "Custom")
+//                 {
+//                     listing.Label("  ?? å–å†³äºæ‚¨çš„è‡ªå®šä¹‰ API å®ç°");
+//                 }
+//                 GUI.color = Color.white;
+//             }
             
-            listing.Gap();
+//             listing.Gap();
             
-            // ÅäÖÃÑéÖ¤°´Å¥
-            Rect validateButtonRect = listing.GetRect(35f);
-            if (Widgets.ButtonText(validateButtonRect, "?? ÑéÖ¤ÅäÖÃ"))
-            {
-                ValidateAIConfig();
-            }
+//             // é…ç½®éªŒè¯æŒ‰é’®
+//             Rect validateButtonRect = listing.GetRect(35f);
+//             if (Widgets.ButtonText(validateButtonRect, "?? éªŒè¯é…ç½®"))
+//             {
+//                 ValidateAIConfig();
+//             }
             
-            // ÌáÊ¾ĞÅÏ¢
-            GUI.color = Color.gray;
-            listing.Label("ÌáÊ¾: ÑéÖ¤½«²âÊÔ API Á¬½ÓºÍÅäÖÃ");
-            GUI.color = Color.white;
-        }
+//             // æç¤ºä¿¡æ¯
+//             GUI.color = Color.gray;
+//             listing.Label("æç¤º: éªŒè¯å°†æµ‹è¯• API è¿æ¥å’Œé…ç½®");
+//             GUI.color = Color.white;
+//         }
         
-        /// <summary>
-        /// ÑéÖ¤ AI ÅäÖÃ
-        /// </summary>
-        private void ValidateAIConfig()
-        {
-            if (useRimTalkAIConfig)
-            {
-                Messages.Message("µ±Ç°Ê¹ÓÃ RimTalk ÅäÖÃ£¬ÎŞĞèÑéÖ¤¶ÀÁ¢ÅäÖÃ", MessageTypeDefOf.NeutralEvent);
-                return;
-            }
+//         /// <summary>
+//         /// éªŒè¯ AI é…ç½®
+//         /// </summary>
+//         private void ValidateAIConfig()
+//         {
+//             if (useRimTalkAIConfig)
+//             {
+//                 Messages.Message("å½“å‰ä½¿ç”¨ RimTalk é…ç½®ï¼Œæ— éœ€éªŒè¯ç‹¬ç«‹é…ç½®", MessageTypeDefOf.NeutralEvent);
+//                 return;
+//             }
             
-            if (string.IsNullOrEmpty(independentApiKey))
-            {
-                Messages.Message("ÇëÏÈÊäÈë API Key", MessageTypeDefOf.RejectInput);
-                return;
-            }
+//             if (string.IsNullOrEmpty(independentApiKey))
+//             {
+//                 Messages.Message("è¯·å…ˆè¾“å…¥ API Key", MessageTypeDefOf.RejectInput);
+//                 return;
+//             }
             
-            if (string.IsNullOrEmpty(independentApiUrl))
-            {
-                Messages.Message("ÇëÏÈÊäÈë API URL", MessageTypeDefOf.RejectInput);
-                return;
-            }
+//             if (string.IsNullOrEmpty(independentApiUrl))
+//             {
+//                 Messages.Message("è¯·å…ˆè¾“å…¥ API URL", MessageTypeDefOf.RejectInput);
+//                 return;
+//             }
             
-            if (string.IsNullOrEmpty(independentModel))
-            {
-                Messages.Message("ÇëÏÈÊäÈë Model", MessageTypeDefOf.RejectInput);
-                return;
-            }
+//             if (string.IsNullOrEmpty(independentModel))
+//             {
+//                 Messages.Message("è¯·å…ˆè¾“å…¥ Model", MessageTypeDefOf.RejectInput);
+//                 return;
+//             }
             
-            Messages.Message("ÅäÖÃÑéÖ¤ÖĞ...", MessageTypeDefOf.NeutralEvent);
+//             Messages.Message("é…ç½®éªŒè¯ä¸­...", MessageTypeDefOf.NeutralEvent);
             
-            // Ç¿ÖÆÖØĞÂ³õÊ¼»¯ AI Summarizer
-            System.Threading.Tasks.Task.Run(() =>
-            {
-                try
-                {
-                    RimTalk.Memory.AI.IndependentAISummarizer.ForceReinitialize();
+//             // å¼ºåˆ¶é‡æ–°åˆå§‹åŒ– AI Summarizer
+//             System.Threading.Tasks.Task.Run(() =>
+//             {
+//                 try
+//                 {
+//                     RimTalk.Memory.AI.IndependentAISummarizer.ForceReinitialize();
                     
-                    if (RimTalk.Memory.AI.IndependentAISummarizer.IsAvailable())
-                    {
-                        LongEventHandler.ExecuteWhenFinished(() =>
-                        {
-                            Messages.Message($"? ÅäÖÃÑéÖ¤³É¹¦£¡Ìá¹©ÉÌ: {independentProvider}", MessageTypeDefOf.PositiveEvent);
-                        });
-                    }
-                    else
-                    {
-                        LongEventHandler.ExecuteWhenFinished(() =>
-                        {
-                            Messages.Message("? ÅäÖÃÑéÖ¤Ê§°Ü£¬Çë¼ì²é API Key ºÍ URL", MessageTypeDefOf.RejectInput);
-                        });
-                    }
-                }
-                catch (System.Exception ex)
-                {
-                    Log.Error($"AI Config validation failed: {ex.Message}");
-                    LongEventHandler.ExecuteWhenFinished(() =>
-                    {
-                        Messages.Message($"? ÑéÖ¤Ê§°Ü: {ex.Message}", MessageTypeDefOf.RejectInput);
-                    });
-                }
-            });
-        }
+//                     if (RimTalk.Memory.AI.IndependentAISummarizer.IsAvailable())
+//                     {
+//                         LongEventHandler.ExecuteWhenFinished(() =>
+//                         {
+//                             Messages.Message($"? é…ç½®éªŒè¯æˆåŠŸï¼æä¾›å•†: {independentProvider}", MessageTypeDefOf.PositiveEvent);
+//                         });
+//                     }
+//                     else
+//                     {
+//                         LongEventHandler.ExecuteWhenFinished(() =>
+//                         {
+//                             Messages.Message("? é…ç½®éªŒè¯å¤±è´¥ï¼Œè¯·æ£€æŸ¥ API Key å’Œ URL", MessageTypeDefOf.RejectInput);
+//                         });
+//                     }
+//                 }
+//                 catch (System.Exception ex)
+//                 {
+//                     Log.Error($"AI Config validation failed: {ex.Message}");
+//                     LongEventHandler.ExecuteWhenFinished(() =>
+//                     {
+//                         Messages.Message($"? éªŒè¯å¤±è´¥: {ex.Message}", MessageTypeDefOf.RejectInput);
+//                     });
+//                 }
+//             });
+//         }
 
-        private void DrawMemoryTypesSettings(Listing_Standard listing)
-        {
-            listing.CheckboxLabeled("ĞĞ¶¯¼ÇÒä", ref enableActionMemory);
-            listing.CheckboxLabeled("¶Ô»°¼ÇÒä", ref enableConversationMemory);
-        }
+//         private void DrawMemoryTypesSettings(Listing_Standard listing)
+//         {
+//             listing.CheckboxLabeled("è¡ŒåŠ¨è®°å¿†", ref enableActionMemory);
+//             listing.CheckboxLabeled("å¯¹è¯è®°å¿†", ref enableConversationMemory);
+//         }
 
-        private void DrawExperimentalFeaturesSettings(Listing_Standard listing)
-        {
-            listing.CheckboxLabeled("ÆôÓÃÖ÷¶¯¼ÇÒäÕÙ»Ø", ref enableProactiveRecall);
+//         private void DrawExperimentalFeaturesSettings(Listing_Standard listing)
+//         {
+//             listing.CheckboxLabeled("å¯ç”¨ä¸»åŠ¨è®°å¿†å¬å›", ref enableProactiveRecall);
             
-            if (enableProactiveRecall)
-            {
-                listing.Label($"´¥·¢¸ÅÂÊ: {recallTriggerChance:P0}");
-                recallTriggerChance = listing.Slider(recallTriggerChance, 0.05f, 0.60f);
-            }
-        }
+//             if (enableProactiveRecall)
+//             {
+//                 listing.Label($"è§¦å‘æ¦‚ç‡: {recallTriggerChance:P0}");
+//                 recallTriggerChance = listing.Slider(recallTriggerChance, 0.05f, 0.60f);
+//             }
+//         }
 
-        private void OpenCommonKnowledgeDialog()
-        {
-            if (Current.Game == null)
-            {
-                Messages.Message("ÇëÏÈ½øÈëÓÎÏ·", MessageTypeDefOf.RejectInput);
-                return;
-            }
+//         private void OpenCommonKnowledgeDialog()
+//         {
+//             if (Current.Game == null)
+//             {
+//                 Messages.Message("è¯·å…ˆè¿›å…¥æ¸¸æˆ", MessageTypeDefOf.RejectInput);
+//                 return;
+//             }
 
-            var memoryManager = Find.World.GetComponent<MemoryManager>();
-            if (memoryManager == null)
-            {
-                Messages.Message("ÎŞ·¨ÕÒµ½ÄÚ´æ¹ÜÀíÆ÷", MessageTypeDefOf.RejectInput);
-                return;
-            }
+//             var memoryManager = Find.World.GetComponent<MemoryManager>();
+//             if (memoryManager == null)
+//             {
+//                 Messages.Message("æ— æ³•æ‰¾åˆ°å†…å­˜ç®¡ç†å™¨", MessageTypeDefOf.RejectInput);
+//                 return;
+//             }
 
-            Find.WindowStack.Add(new Dialog_CommonKnowledge(memoryManager.CommonKnowledge));
-        }
+//             Find.WindowStack.Add(new Dialog_CommonKnowledge(memoryManager.CommonKnowledge));
+//         }
         
-        /// <summary>
-        /// ? »æÖÆÌáÊ¾´Ê¹æ·¶»¯ÉèÖÃ UI
-        /// </summary>
-        private void DrawPromptNormalizationSettings(Listing_Standard listing)
-        {
-            // ±³¾°¿ò
-            Rect sectionRect = listing.GetRect(300f); // Ô¤¹À¸ß¶È
-            Widgets.DrawBoxSolid(sectionRect, new Color(0.15f, 0.15f, 0.15f, 0.5f));
+//         /// <summary>
+//         /// ? ç»˜åˆ¶æç¤ºè¯è§„èŒƒåŒ–è®¾ç½® UI
+//         /// </summary>
+//         private void DrawPromptNormalizationSettings(Listing_Standard listing)
+//         {
+//             // èƒŒæ™¯æ¡†
+//             Rect sectionRect = listing.GetRect(300f); // é¢„ä¼°é«˜åº¦
+//             Widgets.DrawBoxSolid(sectionRect, new Color(0.15f, 0.15f, 0.15f, 0.5f));
             
-            Listing_Standard inner = new Listing_Standard();
-            inner.Begin(sectionRect.ContractedBy(10f));
+//             Listing_Standard inner = new Listing_Standard();
+//             inner.Begin(sectionRect.ContractedBy(10f));
             
-            // ±êÌâ
-            Text.Font = GameFont.Small;
-            GUI.color = new Color(1f, 0.9f, 0.7f);
-            inner.Label("Ìæ»»¹æÔòÁĞ±í");
-            GUI.color = Color.white;
+//             // æ ‡é¢˜
+//             Text.Font = GameFont.Small;
+//             GUI.color = new Color(1f, 0.9f, 0.7f);
+//             inner.Label("æ›¿æ¢è§„åˆ™åˆ—è¡¨");
+//             GUI.color = Color.white;
             
-            inner.Gap(5f);
+//             inner.Gap(5f);
             
-            // ¹æÔòÁĞ±í£¨×î¶àÏÔÊ¾ 10 Ìõ£©
-            if (normalizationRules == null)
-            {
-                normalizationRules = new List<ReplacementRule>();
-            }
+//             // è§„åˆ™åˆ—è¡¨ï¼ˆæœ€å¤šæ˜¾ç¤º 10 æ¡ï¼‰
+//             if (normalizationRules == null)
+//             {
+//                 normalizationRules = new List<ReplacementRule>();
+//             }
             
-            // »æÖÆÃ¿Ìõ¹æÔò
-            for (int i = 0; i < normalizationRules.Count; i++)
-            {
-                var rule = normalizationRules[i];
+//             // ç»˜åˆ¶æ¯æ¡è§„åˆ™
+//             for (int i = 0; i < normalizationRules.Count; i++)
+//             {
+//                 var rule = normalizationRules[i];
                 
-                Rect ruleRect = inner.GetRect(30f);
+//                 Rect ruleRect = inner.GetRect(30f);
                 
-                // ÆôÓÃ¸´Ñ¡¿ò
-                Rect checkboxRect = new Rect(ruleRect.x, ruleRect.y, 24f, 24f);
-                Widgets.Checkbox(checkboxRect.position, ref rule.isEnabled);
+//                 // å¯ç”¨å¤é€‰æ¡†
+//                 Rect checkboxRect = new Rect(ruleRect.x, ruleRect.y, 24f, 24f);
+//                 Widgets.Checkbox(checkboxRect.position, ref rule.isEnabled);
                 
-                // Ä£Ê½ÊäÈë¿ò
-                Rect patternRect = new Rect(ruleRect.x + 30f, ruleRect.y, 200f, 25f);
-                rule.pattern = Widgets.TextField(patternRect, rule.pattern ?? "");
+//                 // æ¨¡å¼è¾“å…¥æ¡†
+//                 Rect patternRect = new Rect(ruleRect.x + 30f, ruleRect.y, 200f, 25f);
+//                 rule.pattern = Widgets.TextField(patternRect, rule.pattern ?? "");
                 
-                // ¼ıÍ·
-                Rect arrowRect = new Rect(ruleRect.x + 235f, ruleRect.y, 30f, 25f);
-                Widgets.Label(arrowRect, " ¡ú ");
+//                 // ç®­å¤´
+//                 Rect arrowRect = new Rect(ruleRect.x + 235f, ruleRect.y, 30f, 25f);
+//                 Widgets.Label(arrowRect, " â†’ ");
                 
-                // Ìæ»»ÊäÈë¿ò
-                Rect replacementRect = new Rect(ruleRect.x + 270f, ruleRect.y, 150f, 25f);
-                rule.replacement = Widgets.TextField(replacementRect, rule.replacement ?? "");
+//                 // æ›¿æ¢è¾“å…¥æ¡†
+//                 Rect replacementRect = new Rect(ruleRect.x + 270f, ruleRect.y, 150f, 25f);
+//                 rule.replacement = Widgets.TextField(replacementRect, rule.replacement ?? "");
                 
-                // É¾³ı°´Å¥
-                Rect deleteRect = new Rect(ruleRect.x + 430f, ruleRect.y, 30f, 25f);
-                GUI.color = new Color(1f, 0.3f, 0.3f);
-                if (Widgets.ButtonText(deleteRect, "?"))
-                {
-                    normalizationRules.RemoveAt(i);
-                    i--; // µ÷ÕûË÷Òı
-                }
-                GUI.color = Color.white;
+//                 // åˆ é™¤æŒ‰é’®
+//                 Rect deleteRect = new Rect(ruleRect.x + 430f, ruleRect.y, 30f, 25f);
+//                 GUI.color = new Color(1f, 0.3f, 0.3f);
+//                 if (Widgets.ButtonText(deleteRect, "?"))
+//                 {
+//                     normalizationRules.RemoveAt(i);
+//                     i--; // è°ƒæ•´ç´¢å¼•
+//                 }
+//                 GUI.color = Color.white;
                 
-                inner.Gap(3f);
-            }
+//                 inner.Gap(3f);
+//             }
             
-            // Ìí¼ÓĞÂ¹æÔò°´Å¥
-            Rect addButtonRect = inner.GetRect(30f);
-            if (Widgets.ButtonText(addButtonRect, "+ Ìí¼ÓĞÂ¹æÔò"))
-            {
-                normalizationRules.Add(new ReplacementRule("", "", true));
-            }
+//             // æ·»åŠ æ–°è§„åˆ™æŒ‰é’®
+//             Rect addButtonRect = inner.GetRect(30f);
+//             if (Widgets.ButtonText(addButtonRect, "+ æ·»åŠ æ–°è§„åˆ™"))
+//             {
+//                 normalizationRules.Add(new ReplacementRule("", "", true));
+//             }
             
-            inner.Gap(5f);
+//             inner.Gap(5f);
             
-            // Í³¼ÆĞÅÏ¢
-            int enabledCount = normalizationRules.Count(r => r.isEnabled);
-            GUI.color = Color.gray;
-            inner.Label($"ÒÑÆôÓÃ: {enabledCount} / {normalizationRules.Count} Ìõ¹æÔò");
-            GUI.color = Color.white;
+//             // ç»Ÿè®¡ä¿¡æ¯
+//             int enabledCount = normalizationRules.Count(r => r.isEnabled);
+//             GUI.color = Color.gray;
+//             inner.Label($"å·²å¯ç”¨: {enabledCount} / {normalizationRules.Count} æ¡è§„åˆ™");
+//             GUI.color = Color.white;
             
-            // Ê¾ÀıÌáÊ¾
-            inner.Gap(3f);
-            GUI.color = new Color(0.7f, 0.9f, 1f);
-            inner.Label("?? Ê¾Àı£ºÄ£Ê½ \\(Player\\) ¡ú Ìæ»» Master");
-            inner.Label("   Ö§³ÖÕıÔò±í´ïÊ½£¨ºöÂÔ´óĞ¡Ğ´£©");
-            GUI.color = Color.white;
+//             // ç¤ºä¾‹æç¤º
+//             inner.Gap(3f);
+//             GUI.color = new Color(0.7f, 0.9f, 1f);
+//             inner.Label("?? ç¤ºä¾‹ï¼šæ¨¡å¼ \\(Player\\) â†’ æ›¿æ¢ Master");
+//             inner.Label("   æ”¯æŒæ­£åˆ™è¡¨è¾¾å¼ï¼ˆå¿½ç•¥å¤§å°å†™ï¼‰");
+//             GUI.color = Color.white;
             
-            inner.End();
-        }
-    }
-}
+//             inner.End();
+//         }
+//     }
+// }

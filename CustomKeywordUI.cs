@@ -46,8 +46,30 @@ namespace RimTalk_ExpandedPreview
         }
 
         public List<CustomKeywordEntry> customKeywordEntries = new List<CustomKeywordEntry>();
-        public bool enableKnowledgeCycle = true;
-        public int knowledgeExtractionCycles = 1;
+        public bool enableKnowledgeCycle = false;
+        public int knowledgeExtractionCycles = 2;
+        
+        // ⭐ 从 ExpandedPreviewSettings 合并过来的字段
+        public int knowledgeContentKeywordLimit = 3;
+        public float extractedContentKnowledgeBonus = 0.20f;
+        public int maxExtractableKnowledge = 5; // ⭐ 新增：能提取内容的常识数量上限
+        public bool useNewKeywordLogic = false; // (实验性)新关键词提取逻辑
+        
+        // 新关键词评分参数
+        public float chineseLength2Score = 2.0f;
+        public float chineseLength3Score = 8.0f;
+        public float chineseLength4Score = 10f;
+        public float chineseLength5Score = 4.0f;
+        public float chineseLength6Score = 6.0f;
+        public float englishBaseScore = 4.0f;
+        public float englishIncrementScore = 4.0f;
+        public float englishMaxScore = 20f;
+        public float cohesionBonusPerMatch = 2.0f;
+        public float cohesionMaxBonus = 10.0f;
+        
+        public List<string> startStopWords = new List<string> { "乎", "于", "以", "给", "向", "为", "被", "从", "当", "并", "但", "似乎" };
+        public List<string> endStopWords = new List<string> { "附", "处", "中", "内", "上", "下", "间", "前", "后" };
+
         private Vector2 scrollPosition = Vector2.zero;
         private string searchText = ""; // 新增：搜索文本
 
@@ -58,9 +80,32 @@ namespace RimTalk_ExpandedPreview
         public override void ExposeData()
         {
             base.ExposeData();
+            
+            // ⭐ 优先加载旧版字段名（兼容性）
+            Scribe_Values.Look(ref enableKnowledgeCycle, "enableKnowledgeCycle", false);
+            Scribe_Values.Look(ref knowledgeExtractionCycles, "knowledgeExtractionCycles", 2);
+            Scribe_Values.Look(ref knowledgeContentKeywordLimit, "knowledgeContentKeywordLimit", 3);
+            Scribe_Values.Look(ref extractedContentKnowledgeBonus, "extractedContentKnowledgeBonus", 0.20f);
+            Scribe_Values.Look(ref maxExtractableKnowledge, "maxExtractableKnowledge", 5);
+            Scribe_Values.Look(ref useNewKeywordLogic, "useNewKeywordLogic", false);
+            
+            // 新关键词评分参数
+            Scribe_Values.Look(ref chineseLength2Score, "chineseLength2Score", 2.0f);
+            Scribe_Values.Look(ref chineseLength3Score, "chineseLength3Score", 8.0f);
+            Scribe_Values.Look(ref chineseLength4Score, "chineseLength4Score", 10f);
+            Scribe_Values.Look(ref chineseLength5Score, "chineseLength5Score", 4.0f);
+            Scribe_Values.Look(ref chineseLength6Score, "chineseLength6Score", 6.0f);
+            Scribe_Values.Look(ref englishBaseScore, "englishBaseScore", 4.0f);
+            Scribe_Values.Look(ref englishIncrementScore, "englishIncrementScore", 4.0f);
+            Scribe_Values.Look(ref englishMaxScore, "englishMaxScore", 20f);
+            Scribe_Values.Look(ref cohesionBonusPerMatch, "cohesionBonusPerMatch", 2.0f);
+            Scribe_Values.Look(ref cohesionMaxBonus, "cohesionMaxBonus", 10.0f);
+            
+            Scribe_Collections.Look(ref startStopWords, "startStopWords", LookMode.Value);
+            Scribe_Collections.Look(ref endStopWords, "endStopWords", LookMode.Value);
+
+            // 加载关键词列表
             Scribe_Collections.Look(ref customKeywordEntries, "customKeywordEntries", LookMode.Deep);
-            Scribe_Values.Look(ref enableKnowledgeCycle, "enableKnowledgeCycle", true);
-            Scribe_Values.Look(ref knowledgeExtractionCycles, "knowledgeExtractionCycles", 1);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -69,6 +114,11 @@ namespace RimTalk_ExpandedPreview
                     customKeywordEntries = new List<CustomKeywordEntry>();
                 }
                 CustomKeywordSettings.Set(customKeywordEntries);
+                
+                if (Prefs.DevMode)
+                {
+                    Log.Message($"[RimTalk_ExpandedPreview] Settings loaded: enableKnowledgeCycle={enableKnowledgeCycle}, cycles={knowledgeExtractionCycles}, bonus={extractedContentKnowledgeBonus}");
+                }
             }
         }
 

@@ -11,13 +11,42 @@
     <RTExpPrev_Settings_EnableKnowledgeCycle>Enable Knowledge Extraction Cycle</RTExpPrev_Settings_EnableKnowledgeCycle>
     <RTExpPrev_Settings_KnowledgeCycleCount>Knowledge Extraction Cycles: {0}</RTExpPrev_Settings_KnowledgeCycleCount>
     <RTExpPrev_Settings_KnowledgeCycleExplanation>Increasing the number of cycles can extract deeper keywords but will increase performance overhead.</RTExpPrev_Settings_KnowledgeCycleExplanation>
-
-    <!-- 新增的 Key -->
     <RTExpPrev_Settings_KnowledgeContentKeywordLimit>Knowledge Content Keyword Limit: {0}</RTExpPrev_Settings_KnowledgeContentKeywordLimit>
     <RTExpPrev_Settings_KnowledgeContentKeywordLimit_Desc>Limits the number of keywords extracted from knowledge content to avoid excessive redundancy or performance issues.</RTExpPrev_Settings_KnowledgeContentKeywordLimit_Desc>
     <RTExpPrev_Settings_ExtractedKnowledgeBonus>Extracted Knowledge Content Bonus: {0}</RTExpPrev_Settings_ExtractedKnowledgeBonus>
     <RTExpPrev_Settings_ExtractedKnowledgeBonus_Desc>Adjusts the additional importance of knowledge content (e.g., "themes," "tags") extracted by RimTalk in the AI's considerations. Higher values will make the AI focus more on these extracted knowledge points.</RTExpPrev_Settings_ExtractedKnowledgeBonus_Desc>
+    <RTExpPrev_MaxExtractableKnowledgeLimit>Max extractable knowledge entries: {0}</RTExpPrev_MaxExtractableKnowledgeLimit>
+    <RTExpPrev_MaxExtractableKnowledgeLimit_Desc>Limits how many knowledge entries can have keywords extracted from them (prevents over-extraction).</RTExpPrev_MaxExtractableKnowledgeLimit_Desc>
 
+    <!-- ExpandedPreviewSettings.cs Collapsible Sections -->
+    <RTExpPrev_Settings_KeywordManagementSection>Keyword Management</RTExpPrev_Settings_KeywordManagementSection>
+    <RTExpPrev_Settings_ExperimentalKeywordSection>(Experimental) New Keyword Extraction Logic</RTExpPrev_Settings_ExperimentalKeywordSection>
+    <RTExpPrev_Settings_EnableNewKeywordLogic>Enable New Keyword Extraction Logic</RTExpPrev_Settings_EnableNewKeywordLogic>
+    <RTExpPrev_Settings_ManageStopWordsButton>Manage Stop Words</RTExpPrev_Settings_ManageStopWordsButton>
+    <RTExpPrev_Settings_ChineseKeywordScoring>Chinese Keyword Length Scoring:</RTExpPrev_Settings_ChineseKeywordScoring>
+    <RTExpPrev_Settings_ChineseLength2>  2 chars: {0}</RTExpPrev_Settings_ChineseLength2>
+    <RTExpPrev_Settings_ChineseLength3>  3 chars: {0}</RTExpPrev_Settings_ChineseLength3>
+    <RTExpPrev_Settings_ChineseLength4>  4 chars: {0}</RTExpPrev_Settings_ChineseLength4>
+    <RTExpPrev_Settings_ChineseLength5>  5 chars: {0}</RTExpPrev_Settings_ChineseLength5>
+    <RTExpPrev_Settings_ChineseLength6>  6 chars: {0}</RTExpPrev_Settings_ChineseLength6>
+    <RTExpPrev_Settings_EnglishKeywordScoring>English Keyword Scoring:</RTExpPrev_Settings_EnglishKeywordScoring>
+    <RTExpPrev_Settings_EnglishBaseScore>  Base score: {0}</RTExpPrev_Settings_EnglishBaseScore>
+    <RTExpPrev_Settings_EnglishIncrementScore>  Per-char increment: {0}</RTExpPrev_Settings_EnglishIncrementScore>
+    <RTExpPrev_Settings_EnglishMaxScore>  Max score: {0}</RTExpPrev_Settings_EnglishMaxScore>
+    <RTExpPrev_Settings_CohesionBonus>Cohesion Bonus:</RTExpPrev_Settings_CohesionBonus>
+    <RTExpPrev_Settings_CohesionBonusPerMatch>  Bonus per match: {0}</RTExpPrev_Settings_CohesionBonusPerMatch>
+    <RTExpPrev_Settings_CohesionMaxBonus>  Max bonus: {0}</RTExpPrev_Settings_CohesionMaxBonus>
+
+    <!-- Dialog_StopWords.cs Translations -->
+    <RTExpPrev_StopWords_Title>Stop Words Management</RTExpPrev_StopWords_Title>
+    <RTExpPrev_StopWords_Description>Add or remove start and end stop words here, one per line.</RTExpPrev_StopWords_Description>
+    <RTExpPrev_StopWords_StartWords>Start Stop Words:</RTExpPrev_StopWords_StartWords>
+    <RTExpPrev_StopWords_EndWords>End Stop Words:</RTExpPrev_StopWords_EndWords>
+
+    <!-- Dialog_CommonKnowledge_Patch.cs Translations -->
+    <RTExpPrev_SearchResult>Search Results: {0} / {1}</RTExpPrev_SearchResult>
+    <RTExpPrev_AllowContentMatchingTooltip>Allow content matching: This knowledge will be matched against 'Knowledge Content Keywords'.</RTExpPrev_AllowContentMatchingTooltip>
+    <RTExpPrev_DisallowContentMatchingTooltip>Disallow content matching: This knowledge will not be matched against 'Knowledge Content Keywords'.</RTExpPrev_DisallowContentMatchingTooltip>
 
     <!-- MECPSettings.cs Translations -->
     <RTExpPrev_Settings_Title>RimTalk Extended Keyword Enhancement</RTExpPrev_Settings_Title>
@@ -33,7 +62,7 @@
     <RTExpPrev_Settings_NegativeColumn>Negative</RTExpPrev_Settings_NegativeColumn>
     <RTExpPrev_Settings_ExplanationNegative>- Negative: When checked, if this keyword appears in the context, it will be removed from the AI's thought material to prevent the AI from being biased by specific words.</RTExpPrev_Settings_ExplanationNegative>
     
-    <!-- ⭐ New: Import Function -->
+    <!-- Import Function -->
     <RTExpPrev_Settings_ImportButton>Bulk Import...</RTExpPrev_Settings_ImportButton>
     <RTExpPrev_Import_Title>Bulk Import Keywords</RTExpPrev_Import_Title>
     <RTExpPrev_Import_Description>Paste keywords here. Delimiters such as comma (,), space, or semicolon (;) are supported. Duplicates will be automatically removed after import.</RTExpPrev_Import_Description>
@@ -41,7 +70,7 @@
     <RTExpPrev_Import_CancelButton>Cancel</RTExpPrev_Import_CancelButton>
     <RTExpPrev_Import_SuccessMessage>Successfully imported {0} new keywords.</RTExpPrev_Import_SuccessMessage>
 
-    <!-- New: Dialog_SaveGameKeywords.cs & KeywordEditorUI.cs Translations -->
+    <!-- Dialog_SaveGameKeywords.cs & KeywordEditorUI.cs Translations -->
     <RTExpPrev_SaveGameKeywords_LoadSaveFirst>Please load a save game before opening this window</RTExpPrev_SaveGameKeywords_LoadSaveFirst>
     <RTExpPrev_SaveGameKeywords_Title>Save Game Important Keywords</RTExpPrev_SaveGameKeywords_Title>
     <RTExpPrev_SaveGameKeywords_AddNewKeyword>Add New Keyword</RTExpPrev_SaveGameKeywords_AddNewKeyword>
@@ -51,78 +80,12 @@
     <RTExpPrev_KeywordEditor_KeywordHeader>Keyword</RTExpPrev_KeywordEditor_KeywordHeader>
     <RTExpPrev_KeywordEditor_WholeWordHeader>Whole Word</RTExpPrev_KeywordEditor_WholeWordHeader>
 
-
-    <!-- Dialog_ExpandedInjectionPreviewNew.cs / injectionpreviewPatches.cs Translations -->
-    <RTExpPrev_Preview_Title>🔍 Enhanced Debug Previewer - RimTalk JSON Simulation</RTExpPrev_Preview_Title>
-    <RTExpPrev_Preview_NoColonistsAvailable>No colonists available\n\nPlease start a game and load a save</RTExpPrev_Preview_NoColonistsAvailable>
-    <RTExpPrev_Preview_RefreshButton>Refresh Preview</RTExpPrev_Preview_RefreshButton>
-
-    <!-- Pawn Selectors -->
-    <RTExpPrev_Preview_CurrentPawnLabel>Current Pawn:</RTExpPrev_Preview_CurrentPawnLabel>
-    <RTExpPrev_Preview_None>None</RTExpPrev_Preview_None>
-    <RTExpPrev_Preview_TargetPawnLabel>Target Pawn:</RTExpPrev_Preview_TargetPawnLabel>
-    <RTExpPrev_Preview_NoneClickToSelect>None (Click to select)</RTExpPrev_Preview_NoneClickToSelect>
-    <RTExpPrev_Preview_ClearButton>Clear</RTExpPrev_Preview_ClearButton>
-    <RTExpPrev_Preview_SameAsCurrent>(Same as current pawn)</RTExpPrev_Preview_SameAsCurrent>
-
-    <!-- Stats Section -->
-    <RTExpPrev_Preview_NoMemoryComponent>This colonist has no memory component</RTExpPrev_Preview_NoMemoryComponent>
-    <RTExpPrev_Preview_MemoryStatsHeader>Memory Layer Stats:</RTExpPrev_Preview_MemoryStatsHeader>
-    <RTExpPrev_Preview_ABMStats>ABM: {0}/6 (Fixed, not injected)</RTExpPrev_Preview_ABMStats>
-    <RTExpPrev_Preview_SCMStats>SCM: {0}</RTExpPrev_Preview_SCMStats>
-    <RTExpPrev_Preview_ELSStats>ELS: {0}</RTExpPrev_Preview_ELSStats>
-    <RTExpPrev_Preview_CLPAStats>CLPA: {0}</RTExpPrev_Preview_CLPAStats>
-    <RTExpPrev_Preview_KnowledgeStatsHeader>Knowledge Base Stats:</RTExpPrev_Preview_KnowledgeStatsHeader>
-    <RTExpPrev_Preview_KnowledgeStats>Total: {0} | Enabled: {1}</RTExpPrev_Preview_KnowledgeStats>
-    <RTExpPrev_Preview_InjectionConfigHeader>Injection Config:</RTExpPrev_Preview_InjectionConfigHeader>
-    <RTExpPrev_Preview_ModeDynamic>Dynamic Scoring</RTExpPrev_Preview_ModeDynamic>
-    <RTExpPrev_Preview_ModeStatic>Static Order</RTExpPrev_Preview_ModeStatic>
-    <RTExpPrev_Preview_ConfigDetails>Mode: {0} | Max Memory: {1} | Max Knowledge: {2} | Memory Threshold: {3} | Knowledge Threshold: {4}</RTExpPrev_Preview_ConfigDetails>
-	<RTExpPrev_Preview_GlobalKeywordsButton>Global Important Keywords</RTExpPrev_Preview_GlobalKeywordsButton>
-	<RTExpPrev_Preview_SaveKeywordsButton>Save Game Important Keywords</RTExpPrev_Preview_SaveKeywordsButton>
-    <!-- JSON Simulation Preview -->
-    <RTExpPrev_Preview_JSONSimulationHeader>RimTalk JSON Request Simulation</RTExpPrev_Preview_JSONSimulationHeader>
-
-    <!-- Detailed Analysis Headers -->
-    <RTExpPrev_Preview_KeywordDetailsHeader>🔑 Keyword Extraction Details</RTExpPrev_Preview_KeywordDetailsHeader>
+    <!-- injectionpreviewPatches.cs Translations -->
     <RTExpPrev_Preview_KnowledgeScoringHeader>🎓 Knowledge Scoring Details</RTExpPrev_Preview_KnowledgeScoringHeader>
     <RTExpPrev_Preview_KnowledgeContentKeywordsHeader>📚 【Knowledge Content Keywords List】</RTExpPrev_Preview_KnowledgeContentKeywordsHeader>
     <RTExpPrev_Preview_KeywordGroupHeader>【{0}-character Keywords】 ({1}):</RTExpPrev_Preview_KeywordGroupHeader>
-    <RTExpPrev_Preview_NoKnowledgeContentKeywords>No Knowledge Content Keywords</RTExpPrev_Preview_NoKnowledgeContentKeywords>
-
-    <!-- Keyword Extraction Details -->
-    <RTExpPrev_Preview_ClickRefreshKeywords>Click 'Refresh Preview' to get keyword data.</RTExpPrev_Preview_ClickRefreshKeywords>
-    <RTExpPrev_Preview_ContextKeywordsCount>Extracted from context: {0} keywords</RTExpPrev_Preview_ContextKeywordsCount>
-    <RTExpPrev_Preview_PawnInfoKeywordsCount>Extracted from pawn '{0}' info: {1} keywords</RTExpPrev_Preview_PawnInfoKeywordsCount>
-    <RTExpPrev_Preview_TotalKeywordsCount>Total Keywords: {0}</RTExpPrev_Preview_TotalKeywordsCount>
-    <RTExpPrev_Preview_CoreKeywordsHeader>Core Keywords (from context):</RTExpPrev_Preview_CoreKeywordsHeader>
-    <RTExpPrev_Preview_ShowPawnKeywordsToggle>Show detailed pawn keyword categories</RTExpPrev_Preview_ShowPawnKeywordsToggle>
-    <RTExpPrev_Preview_PawnKeywordsCategoryHeader>--- Keyword Categories for '{0}' ---</RTExpPrev_Preview_PawnKeywordsCategoryHeader>
-    <RTExpPrev_Preview_NameKeywords>👤 Name Keywords</RTExpPrev_Preview_NameKeywords>
-    <RTExpPrev_Preview_AgeKeywords>🎂 Age Keywords</RTExpPrev_Preview_AgeKeywords>
-    <RTExpPrev_Preview_GenderKeywords>⚥ Gender Keywords</RTExpPrev_Preview_GenderKeywords>
-    <RTExpPrev_Preview_RaceKeywords>🧬 Race Keywords</RTExpPrev_Preview_RaceKeywords>
-    <RTExpPrev_Preview_TraitKeywords>🎭 Trait Keywords</RTExpPrev_Preview_TraitKeywords>
-    <RTExpPrev_Preview_SkillKeywords>🛠️ Skill Keywords</RTExpPrev_Preview_SkillKeywords>
-    <RTExpPrev_Preview_SkillLevelKeywords>⭐ Skill Level Keywords</RTExpPrev_Preview_SkillLevelKeywords>
-    <RTExpPrev_Preview_HealthKeywords>💚 Health Status Keywords</RTExpPrev_Preview_HealthKeywords>
-    <RTExpPrev_Preview_RelationshipKeywords>👥 Relationship Keywords</RTExpPrev_Preview_RelationshipKeywords>
-    <RTExpPrev_Preview_AdultBackstoryKeywords>📖 Adulthood Keywords</RTExpPrev_Preview_AdultBackstoryKeywords>
-    <RTExpPrev_Preview_ChildhoodKeywords>🎈 Childhood Keywords</RTExpPrev_Preview_ChildhoodKeywords>
-    <RTExpPrev_Preview_CountParentheses>({0})</RTExpPrev_Preview_CountParentheses>
     <RTExpPrev_Preview_MoreKeywords>... ({0} more)</RTExpPrev_Preview_MoreKeywords>
-	    <!-- ⭐ New: Copy Keyword Function -->
-    <RTExpPrev_Preview_CopyContextKeywords>Copy Context Keywords</RTExpPrev_Preview_CopyContextKeywords>
-    <RTExpPrev_Preview_CopyContextKeywordsTooltip>Copy the 20 core keywords extracted from the current context to the clipboard for easy bulk import.</RTExpPrev_Preview_CopyContextKeywordsTooltip>
-    <RTExpPrev_Preview_CopySuccess>Copied {0} keywords to clipboard.</RTExpPrev_Preview_CopySuccess>
-    <RTExpPrev_Preview_CopyNothing>No keywords to copy.</RTExpPrev_Preview_CopyNothing>
-
-	    <!-- New: Target Pawn Keyword Category Title -->
-    <RTExpPrev_Preview_TargetPawnKeywordsCategoryHeader>--- Keyword Categories for '{0}' (Target Pawn) ---</RTExpPrev_Preview_TargetPawnKeywordsCategoryHeader>
-	    <!-- ⭐ New: For Target Pawn -->
-    <RTExpPrev_Preview_TargetPawnInfoKeywordsCount>Extracted from target '{0}' info: {1} keywords</RTExpPrev_Preview_TargetPawnInfoKeywordsCount>
-
-    <!-- Knowledge Scoring Details -->
+    <RTExpPrev_Preview_NoKnowledgeContentKeywords>No Knowledge Content Keywords</RTExpPrev_Preview_NoKnowledgeContentKeywords>
     <RTExpPrev_Preview_ClickRefreshKnowledgeScores>Click 'Refresh Preview' to get knowledge scoring data.</RTExpPrev_Preview_ClickRefreshKnowledgeScores>
     <RTExpPrev_Preview_KnowledgeInjectionThreshold>Knowledge Injection Threshold: {0}</RTExpPrev_Preview_KnowledgeInjectionThreshold>
     <RTExpPrev_Preview_ShowAllKnowledgeToggle>Show all knowledge entries (including those below threshold)</RTExpPrev_Preview_ShowAllKnowledgeToggle>
@@ -134,83 +97,9 @@
     <RTExpPrev_Preview_ExactMatchBonus>├─ Exact Match Bonus: {0}</RTExpPrev_Preview_ExactMatchBonus>
     <RTExpPrev_Preview_Status>└─ Status: {0}</RTExpPrev_Preview_Status>
     <RTExpPrev_Preview_MatchedKeywordsList>(Matches: {0}{1})</RTExpPrev_Preview_MatchedKeywordsList>
-    <RTExpPrev_Preview_MatchedTagsList>(Matching tags: {0}{1})</RTExpPrev_Preview_MatchedTagsList>
     <RTExpPrev_Preview_MoreMatchKeywords>...({0} more)</RTExpPrev_Preview_MoreMatchKeywords>
-
-    <!-- Refresh Preview Logic Strings -->
-    <RTExpPrev_Preview_NoPawnSelected>No pawn selected</RTExpPrev_Preview_NoPawnSelected>
-    <RTExpPrev_Preview_CannotLoadSettings>Cannot load Mod settings</RTExpPrev_Preview_CannotLoadSettings>
-    <RTExpPrev_Preview_JSONSimulationBlock_Start>╔════════════════════════════════════════════════════════════════════════╗</RTExpPrev_Preview_JSONSimulationBlock_Start>
-    <RTExpPrev_Preview_JSONSimulationBlock_Title>║        RimTalk API JSON Request Simulation (ExpandMemory Injection)      ║</RTExpPrev_Preview_JSONSimulationBlock_Title>
-    <RTExpPrev_Preview_JSONSimulationBlock_End>╚════════════════════════════════════════════════════════════════════════╝</RTExpPrev_Preview_JSONSimulationBlock_End>
-    <RTExpPrev_Preview_PawnLabel>Pawn: {0}</RTExpPrev_Preview_PawnLabel>
-    <RTExpPrev_Preview_TargetPawnLabel_WithPawn>Target Pawn: {0}</RTExpPrev_Preview_TargetPawnLabel_WithPawn>
-    <RTExpPrev_Preview_Time>Time: {0}</RTExpPrev_Preview_Time>
-    <RTExpPrev_Preview_InjectionMode>Injection Mode: {0}</RTExpPrev_Preview_InjectionMode>
-    <RTExpPrev_Preview_ContextEmpty>Context: Empty (based on importance + layer scoring)</RTExpPrev_Preview_ContextEmpty>
-    <RTExpPrev_Preview_ContextInputPreview>Context: "{0}..."</RTExpPrev_Preview_ContextInputPreview>
-    <RTExpPrev_Preview_KnowledgeSectionHeader>【Knowledge】</RTExpPrev_Preview_KnowledgeSectionHeader>
-    <RTExpPrev_Preview_RimTalkSystemPrompt_Part1>You are a role-playing AI for a RimWorld colony.</RTExpPrev_Preview_RimTalkSystemPrompt_Part1>
-    <RTExpPrev_Preview_RimTalkSystemPrompt_Part2>You are role-playing as {0}.</RTExpPrev_Preview_RimTalkSystemPrompt_Part2>
-    <RTExpPrev_Preview_MemorySectionHeader>【Memory】</RTExpPrev_Preview_MemorySectionHeader>
-    <RTExpPrev_Preview_Divider>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━══</RTExpPrev_Preview_Divider>
-    <RTExpPrev_Preview_FullJSONStructureHeader>📋 Full JSON Request Structure:</RTExpPrev_Preview_FullJSONStructureHeader>
-    <RTExpPrev_Preview_ContentTruncated>... (Total {0} lines, rest omitted)</RTExpPrev_Preview_ContentTruncated>
-    <RTExpPrev_Preview_UserDialoguePlaceholder>[User's dialogue input]</RTExpPrev_Preview_UserDialoguePlaceholder>
-    <RTExpPrev_Preview_MemoryInjectionAnalysisHeader>📝 【ExpandMemory - Detailed Memory Injection Analysis】</RTExpPrev_Preview_MemoryInjectionAnalysisHeader>
-    <RTExpPrev_Preview_DynamicMemorySelectionCount>🎯 Dynamic scoring selected {0} memories</RTExpPrev_Preview_DynamicMemorySelectionCount>
-    <RTExpPrev_Preview_ScoringThreshold>📊 Scoring Threshold: {0} (memories below this score are not injected)</RTExpPrev_Preview_ScoringThreshold>
-    <RTExpPrev_Preview_MemoryScoreDetail>[{0}] {1} Score: {2}</RTExpPrev_Preview_MemoryScoreDetail>
-    <RTExpPrev_Preview_MemorySourceType>Source: {0} | Type: {1}</RTExpPrev_Preview_MemorySourceType>
-    <RTExpPrev_Preview_ImportanceScore>├─ Importance: {0}</RTExpPrev_Preview_ImportanceScore>
-    <RTExpPrev_Preview_KeywordScore>├─ Keyword: {0}</RTExpPrev_Preview_KeywordScore>
-    <RTExpPrev_Preview_TimeScore>├─ Time: {0} (SCM/ELS not time-scored)</RTExpPrev_Preview_TimeScore>
-    <RTExpPrev_Preview_BonusScore>└─ Bonus: {0} (Layer + Fixed + Edit)</RTExpPrev_Preview_BonusScore>
-    <RTExpPrev_Preview_MemoryContent>Content: "{0}"</RTExpPrev_Preview_MemoryContent>
-    <RTExpPrev_Preview_NoMemoryThreshold>⚠️ No memories met the threshold, returning null (no memories injected)</RTExpPrev_Preview_NoMemoryThreshold>
-    <RTExpPrev_Preview_CurrentThreshold>📊 Current Threshold: {0}</RTExpPrev_Preview_CurrentThreshold>
-    <RTExpPrev_Preview_KnowledgeInjectionInfoHeader>🎓 【ExpandMemory - Knowledge Base Injection Info】</RTExpPrev_Preview_KnowledgeInjectionInfoHeader>
-    <RTExpPrev_Preview_DynamicKnowledgeSelectionCount>🎯 Dynamic scoring selected {0} knowledge entries (see right panel for detailed scores)</RTExpPrev_Preview_DynamicKnowledgeSelectionCount>
-    <RTExpPrev_Preview_KnowledgeEntryScore>- [{0}] {1} (Score: {2})</RTExpPrev_Preview_KnowledgeEntryScore>
-    <RTExpPrev_Preview_NoKnowledgeThreshold>⚠️ No knowledge entries met the threshold, returning null (no knowledge injected)</RTExpPrev_Preview_NoKnowledgeThreshold>
-    <RTExpPrev_Preview_InjectionStatsHeader>📊 【Injection Statistics】</RTExpPrev_Preview_InjectionStatsHeader>
-    <RTExpPrev_Preview_MemoryInjectedCount>✅ Memories Injected: {0}</RTExpPrev_Preview_MemoryInjectedCount>
-    <RTExpPrev_Preview_KnowledgeInjectedCount>✅ Knowledge Injected: {0}</RTExpPrev_Preview_KnowledgeInjectedCount>
-    <RTExpPrev_Preview_TokenEstimate>📦 Total Token Estimate: ~{0} tokens</RTExpPrev_Preview_TokenEstimate>
-    <RTExpPrev_Preview_CostEstimate>💰 API Cost Estimate: ~${0} (GPT-4)</RTExpPrev_Preview_CostEstimate>
-    <RTExpPrev_Preview_ThankYouMessage>Thank you for using the RimTalk Debug Previewer!</RTExpPrev_Preview_ThankYouMessage>
-    <RTExpPrev_Preview_ColorLegendHeader>💡 【Color Legend】</RTExpPrev_Preview_ColorLegendHeader>
-    <RTExpPrev_Preview_Legend_ABM>🟦 [ABM] - Autobiographical Memory (not injected, reserved for TalkHistory)</RTExpPrev_Preview_Legend_ABM>
-    <RTExpPrev_Preview_Legend_SCM>🟨 [SCM] - Short-term Conversational Memory (recent events, no time bonus)</RTExpPrev_Preview_Legend_SCM>
-    <RTExpPrev_Preview_Legend_ELS>🟧 [ELS] - Episodic Long-term Storage (AI summaries, no time bonus)</RTExpPrev_Preview_Legend_ELS>
-    <RTExpPrev_Preview_Legend_CLPA>🟪 [CLPA] - Core Long-term Personality Archive (core traits, has time bonus)</RTExpPrev_Preview_Legend_CLPA>
-    <RTExpPrev_Preview_Legend_Knowledge>📘 [Knowledge] - Knowledge Base Entry (world/background info)</RTExpPrev_Preview_Legend_Knowledge>
-    <RTExpPrev_Preview_ErrorGenerating>Error generating preview: {0}\n{1}</RTExpPrev_Preview_ErrorGenerating>
-
-    <!-- Context Input / Load Last Context -->
-    <RTExpPrev_Preview_ContextInputLabel>Context Input:</RTExpPrev_Preview_ContextInputLabel>
-    <RTExpPrev_Preview_LoadLastInputButton>Load Last Input 📥</RTExpPrev_Preview_LoadLastInputButton>
-    <RTExpPrev_Preview_LoadLastInputTooltip>Load the last dialogue sent to the AI from RimTalk\n(Only available if RimTalk is installed and has a dialogue history)</RTExpPrev_Preview_LoadLastInputTooltip>
-    <RTExpPrev_Preview_ContextInputPlaceholder>Enter dialogue context (e.g., recent conversation topics, etc.)\nLeave blank to score based only on importance and layer</RTExpPrev_Preview_ContextInputPlaceholder>
-    <RTExpPrev_Preview_NoRecentDialogue>No recent dialogue history from RimTalk found</RTExpPrev_Preview_NoRecentDialogue>
-
-    <!-- Time Formats -->
-    <RTExpPrev_Time_JustNow>Just now</RTExpPrev_Time_JustNow>
-    <RTExpPrev_Time_MinutesAgo>{0} minutes ago</RTExpPrev_Time_MinutesAgo>
-    <RTExpPrev_Time_HoursAgo>{0} hours ago</RTExpPrev_Time_HoursAgo>
-    <RTExpPrev_Time_DaysAgo>{0} days ago</RTExpPrev_Time_DaysAgo>
-
-    <!-- Load Context Messages -->
-    <RTExpPrev_Preview_UnknownPawn>Unknown</RTExpPrev_Preview_UnknownPawn>
-    <RTExpPrev_Preview_LoadSuccess>Loaded last dialogue from {0} ({1})</RTExpPrev_Preview_LoadSuccess>
-    <RTExpPrev_Preview_LoadFailed>Failed to load: {0}</RTExpPrev_Preview_LoadFailed>
-    <RTExpPrev_Preview_LoadFailedLogError>Failed to load last RimTalk context: {0}</RTExpPrev_Preview_LoadFailedLogError>
-
-    <!-- Memory Layer Tags -->
-    <RTExpPrev_MemoryLayer_ABM>ABM (Not Injected)</RTExpPrev_MemoryLayer_ABM>
-    <RTExpPrev_MemoryLayer_SCM>SCM (ExpandMemory)</RTExpPrev_MemoryLayer_SCM>
-    <RTExpPrev_MemoryLayer_ELS>ELS (ExpandMemory)</RTExpPrev_MemoryLayer_ELS>
-    <RTExpPrev_MemoryLayer_CLPA>CLPA (ExpandMemory)</RTExpPrev_MemoryLayer_CLPA>
-    <RTExpPrev_MemoryLayer_Unknown>Unknown</RTExpPrev_MemoryLayer_Unknown>
+    <RTExpPrev_Preview_MatchedTagsList>(Matching tags: {0}{1})</RTExpPrev_Preview_MatchedTagsList>
+    <RTExpPrev_Preview_GlobalKeywordsButton>Global Important Keywords</RTExpPrev_Preview_GlobalKeywordsButton>
+    <RTExpPrev_Preview_SaveKeywordsButton>Save Game Important Keywords</RTExpPrev_Preview_SaveKeywordsButton>
 
 </LanguageData>

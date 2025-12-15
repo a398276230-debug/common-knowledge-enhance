@@ -2,44 +2,21 @@
 using HarmonyLib;
 using Verse;
 using System.Reflection;
-using UnityEngine; // For Rect
-using System.Collections.Generic; // For List
+using UnityEngine;
+using System.Collections.Generic;
 
 namespace RimTalk_ExpandedPreview
 {
-    // 定义设置类
-    public class ExpandedPreviewSettings : ModSettings
-    {
-        public bool enableKnowledgeCycle = false;
-        public int knowledgeExtractionCycles = 2;
-
-        // 新增：常识内容关键词数量限制
-        public int knowledgeContentKeywordLimit = 3;
-
-        // 新增：被提取内容常识加分
-        public float extractedContentKnowledgeBonus = 0.20f;
-
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look(ref enableKnowledgeCycle, "enableKnowledgeCycle", false);
-            Scribe_Values.Look(ref knowledgeExtractionCycles, "knowledgeExtractionCycles", 2);
-            
-            // 序列化新增设置
-            Scribe_Values.Look(ref knowledgeContentKeywordLimit, "knowledgeContentKeywordLimit", 3);
-            Scribe_Values.Look(ref extractedContentKnowledgeBonus, "extractedContentKnowledgeBonus", 0.20f);
-        }
-    }
-
     public class RimTalk_ExpandedPreviewMod : Mod
     {
-        public static ExpandedPreviewSettings Settings;
-        public static CustomKeywordUI CustomKeywordSettings;
+        public static CustomKeywordUI Settings;
+        private Vector2 scrollPosition = Vector2.zero;
+        private static bool keywordManagementExpanded = false;
+        private static bool experimentalKeywordExpanded = false;
 
         public RimTalk_ExpandedPreviewMod(ModContentPack content) : base(content)
         {
-            Settings = GetSettings<ExpandedPreviewSettings>();
-            CustomKeywordSettings = GetSettings<CustomKeywordUI>();
+            Settings = GetSettings<CustomKeywordUI>();
 
             var harmony = new Harmony("MEKP.RimTalkKnowledgePreview");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
@@ -50,8 +27,11 @@ namespace RimTalk_ExpandedPreview
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
+            Rect viewRect = new Rect(0f, 0f, inRect.width - 16f, 1200f);
+            Widgets.BeginScrollView(inRect, ref scrollPosition, viewRect);
+
             Listing_Standard listing = new Listing_Standard();
-            listing.Begin(inRect);
+            listing.Begin(viewRect);
 
             Text.Font = GameFont.Medium;
             listing.Label("RTExpPrev_Settings_Title".Translate());
@@ -93,27 +73,45 @@ namespace RimTalk_ExpandedPreview
             listing.Label("RTExpPrev_Settings_Hint".Translate());
             GUI.color = Color.white;
 
-            listing.Gap(24f); // 增加间距
+            listing.Gap(24f);
 
-            // --- 新增设置项 ---
+            DrawCollapsibleSection(listing, "RTExpPrev_Settings_KeywordManagementSection".Translate(), ref keywordManagementExpanded, () => DrawKeywordManagementSettings(listing));
+            DrawCollapsibleSection(listing, "RTExpPrev_Settings_ExperimentalKeywordSection".Translate(), ref experimentalKeywordExpanded, () => DrawExperimentalKeywordSettings(listing));
+
+            listing.End();
+            Widgets.EndScrollView();
+        }
+
+        private void DrawCollapsibleSection(Listing_Standard listing, string title, ref bool expanded, System.Action drawContent)
+        {
+            Rect headerRect = listing.GetRect(35f);
+            Widgets.DrawBoxSolid(headerRect, new Color(0.2f, 0.2f, 0.2f, 0.5f));
             
-            // 1. 常识内容关键词数量限制
-            listing.Label("RTExpPrev_Settings_KnowledgeContentKeywordLimit".Translate(Settings.knowledgeContentKeywordLimit)); // 新增Key
-            Settings.knowledgeContentKeywordLimit = (int)listing.Slider(Settings.knowledgeContentKeywordLimit, 1, 50);
-            GUI.color = Color.gray;
-            listing.Label("RTExpPrev_Settings_KnowledgeContentKeywordLimit_Desc".Translate()); // 新增Key
-            GUI.color = Color.white;
-            listing.Gap(12f);
+            Text.Font = GameFont.Medium;
+            Rect labelRect = new Rect(headerRect.x + 35f, headerRect.y + 5f, headerRect.width - 35f, headerRect.height);
+            Widgets.Label(labelRect, title);
+            Text.Font = GameFont.Small;
+            
+            Rect iconRect = new Rect(headerRect.x + 8f, headerRect.y + 8f, 22f, 22f);
+            if (Widgets.ButtonImage(iconRect, expanded ? TexButton.Collapse : TexButton.Reveal))
+            {
+                expanded = !expanded;
+            }
+            
+            listing.Gap(3f);
+            
+            if (expanded)
+            {
+                listing.Gap(3f);
+                drawContent?.Invoke();
+                listing.Gap(6f);
+            }
+            
+            listing.GapLine();
+        }
 
-            // 2. 被提取内容常识加分
-            listing.Label("RTExpPrev_Settings_ExtractedKnowledgeBonus".Translate(Settings.extractedContentKnowledgeBonus.ToString("F2"))); // 新增Key
-            Settings.extractedContentKnowledgeBonus = listing.Slider(Settings.extractedContentKnowledgeBonus, 0f, 2f);
-            GUI.color = Color.gray;
-            listing.Label("RTExpPrev_Settings_ExtractedKnowledgeBonus_Desc".Translate()); // 新增Key
-            GUI.color = Color.white;
-            listing.Gap(12f);
-
-            // --- 原有循环次数设置 ---
+        private void DrawKeywordManagementSettings(Listing_Standard listing)
+        {
             listing.CheckboxLabeled("RTExpPrev_Settings_EnableKnowledgeCycle".Translate(), ref Settings.enableKnowledgeCycle);
             if (Settings.enableKnowledgeCycle)
             {
@@ -123,8 +121,88 @@ namespace RimTalk_ExpandedPreview
                 listing.Label("RTExpPrev_Settings_KnowledgeCycleExplanation".Translate());
                 GUI.color = Color.white;
             }
+            listing.Gap(12f);
 
-            listing.End();
+            listing.Label("RTExpPrev_MaxExtractableKnowledgeLimit".Translate(Settings.maxExtractableKnowledge));
+            Settings.maxExtractableKnowledge = (int)listing.Slider(Settings.maxExtractableKnowledge, 1, 10);
+            GUI.color = Color.gray;
+            listing.Label("RTExpPrev_MaxExtractableKnowledgeLimit_Desc".Translate());
+            GUI.color = Color.white;
+            listing.Gap(12f);
+
+            listing.Label("RTExpPrev_Settings_KnowledgeContentKeywordLimit".Translate(Settings.knowledgeContentKeywordLimit));
+            Settings.knowledgeContentKeywordLimit = (int)listing.Slider(Settings.knowledgeContentKeywordLimit, 1, 50);
+            GUI.color = Color.gray;
+            listing.Label("RTExpPrev_Settings_KnowledgeContentKeywordLimit_Desc".Translate());
+            GUI.color = Color.white;
+            listing.Gap(12f);
+
+            listing.Label("RTExpPrev_Settings_ExtractedKnowledgeBonus".Translate(Settings.extractedContentKnowledgeBonus.ToString("F2")));
+            Settings.extractedContentKnowledgeBonus = listing.Slider(Settings.extractedContentKnowledgeBonus, 0f, 2f);
+            GUI.color = Color.gray;
+            listing.Label("RTExpPrev_Settings_ExtractedKnowledgeBonus_Desc".Translate());
+            GUI.color = Color.white;
+        }
+
+        private void DrawExperimentalKeywordSettings(Listing_Standard listing)
+        {
+            Rect firstRowRect = listing.GetRect(30f);
+            Rect checkboxRect = new Rect(firstRowRect.x, firstRowRect.y, firstRowRect.width * 0.6f, firstRowRect.height);
+            Rect buttonRect = new Rect(checkboxRect.xMax + 10f, firstRowRect.y, firstRowRect.width * 0.4f - 10f, firstRowRect.height);
+
+            Widgets.CheckboxLabeled(checkboxRect, "RTExpPrev_Settings_EnableNewKeywordLogic".Translate(), ref Settings.useNewKeywordLogic);
+            if (Widgets.ButtonText(buttonRect, "RTExpPrev_Settings_ManageStopWordsButton".Translate()))
+            {
+                Find.WindowStack.Add(new Dialog_StopWords());
+            }
+            listing.Gap(12f);
+            
+            // 两列布局
+            Rect columnRect = listing.GetRect(280f);
+            float columnWidth = (columnRect.width - 20f) / 2f;
+            
+            // 左列：中文关键词评分
+            Listing_Standard leftColumn = new Listing_Standard();
+            Rect leftRect = new Rect(columnRect.x, columnRect.y, columnWidth, columnRect.height);
+            leftColumn.Begin(leftRect);
+            
+            leftColumn.Label("RTExpPrev_Settings_ChineseKeywordScoring".Translate());
+            leftColumn.Label("RTExpPrev_Settings_ChineseLength2".Translate(Settings.chineseLength2Score.ToString("F1")));
+            Settings.chineseLength2Score = leftColumn.Slider(Settings.chineseLength2Score, 0f, 20f);
+            leftColumn.Label("RTExpPrev_Settings_ChineseLength3".Translate(Settings.chineseLength3Score.ToString("F1")));
+            Settings.chineseLength3Score = leftColumn.Slider(Settings.chineseLength3Score, 0f, 20f);
+            leftColumn.Label("RTExpPrev_Settings_ChineseLength4".Translate(Settings.chineseLength4Score.ToString("F1")));
+            Settings.chineseLength4Score = leftColumn.Slider(Settings.chineseLength4Score, 0f, 20f);
+            leftColumn.Label("RTExpPrev_Settings_ChineseLength5".Translate(Settings.chineseLength5Score.ToString("F1")));
+            Settings.chineseLength5Score = leftColumn.Slider(Settings.chineseLength5Score, 0f, 20f);
+            leftColumn.Label("RTExpPrev_Settings_ChineseLength6".Translate(Settings.chineseLength6Score.ToString("F1")));
+            Settings.chineseLength6Score = leftColumn.Slider(Settings.chineseLength6Score, 0f, 20f);
+            
+            leftColumn.End();
+            
+            // 右列：英文关键词评分
+            Listing_Standard rightColumn = new Listing_Standard();
+            Rect rightRect = new Rect(columnRect.x + columnWidth + 20f, columnRect.y, columnWidth, columnRect.height);
+            rightColumn.Begin(rightRect);
+            
+            rightColumn.Label("RTExpPrev_Settings_EnglishKeywordScoring".Translate());
+            rightColumn.Label("RTExpPrev_Settings_EnglishBaseScore".Translate(Settings.englishBaseScore.ToString("F1")));
+            Settings.englishBaseScore = rightColumn.Slider(Settings.englishBaseScore, 0f, 20f);
+            rightColumn.Label("RTExpPrev_Settings_EnglishIncrementScore".Translate(Settings.englishIncrementScore.ToString("F1")));
+            Settings.englishIncrementScore = rightColumn.Slider(Settings.englishIncrementScore, 0f, 10f);
+            rightColumn.Label("RTExpPrev_Settings_EnglishMaxScore".Translate(Settings.englishMaxScore.ToString("F1")));
+            Settings.englishMaxScore = rightColumn.Slider(Settings.englishMaxScore, 0f, 50f);
+            
+            rightColumn.End();
+            
+            listing.Gap(12f);
+            
+            // 凝固度加分（全宽）
+            listing.Label("RTExpPrev_Settings_CohesionBonus".Translate());
+            listing.Label("RTExpPrev_Settings_CohesionBonusPerMatch".Translate(Settings.cohesionBonusPerMatch.ToString("F1")));
+            Settings.cohesionBonusPerMatch = listing.Slider(Settings.cohesionBonusPerMatch, 0f, 10f);
+            listing.Label("RTExpPrev_Settings_CohesionMaxBonus".Translate(Settings.cohesionMaxBonus.ToString("F1")));
+            Settings.cohesionMaxBonus = listing.Slider(Settings.cohesionMaxBonus, 0f, 20f);
         }
     }
 }

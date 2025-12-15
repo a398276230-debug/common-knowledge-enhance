@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿// 预览绘图
+using HarmonyLib;
 using RimTalk.Memory;
 using RimTalk.Memory.Debug;
 using System;
@@ -334,6 +335,12 @@ namespace RimTalk_ExpandedPreview
                 Find.WindowStack.Add(new Dialog_SaveGameKeywords());
             }
             GUI.enabled = prevEnabled;
+
+            Rect stopWordsBtnRect = new Rect(saveBtnRect.xMax + kbSpacing, topY, kbBtnWidth, kbBtnHeight);
+            if (Widgets.ButtonText(stopWordsBtnRect, "管理停用词"))
+            {
+                Find.WindowStack.Add(new Dialog_StopWords());
+            }
 
             // 计算面板位置（从按钮下方开始到窗口底部）
             float panelsY = topY + kbBtnHeight + 10f;

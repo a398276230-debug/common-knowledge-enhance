@@ -11,15 +11,44 @@
     <RTExpPrev_Settings_EnableKnowledgeCycle>启用知识提取循环</RTExpPrev_Settings_EnableKnowledgeCycle>
     <RTExpPrev_Settings_KnowledgeCycleCount>知识提取循环次数: {0}</RTExpPrev_Settings_KnowledgeCycleCount>
     <RTExpPrev_Settings_KnowledgeCycleExplanation>增加循环次数可以提取更深层次的关键词，但会增加性能开销。</RTExpPrev_Settings_KnowledgeCycleExplanation>
-
-    <!-- 新增的 Key -->
     <RTExpPrev_Settings_KnowledgeContentKeywordLimit>常识内容关键词数量限制: {0}</RTExpPrev_Settings_KnowledgeContentKeywordLimit>
     <RTExpPrev_Settings_KnowledgeContentKeywordLimit_Desc>限制从常识内容中提取的关键词数量，以避免过度冗余或性能问题。</RTExpPrev_Settings_KnowledgeContentKeywordLimit_Desc>
     <RTExpPrev_Settings_ExtractedKnowledgeBonus>被提取内容常识加分: {0}</RTExpPrev_Settings_ExtractedKnowledgeBonus>
     <RTExpPrev_Settings_ExtractedKnowledgeBonus_Desc>调整被提取内容的关键词的权重，防止其丢失</RTExpPrev_Settings_ExtractedKnowledgeBonus_Desc>
+    <RTExpPrev_MaxExtractableKnowledgeLimit>能提取内容的常识数量上限: {0}</RTExpPrev_MaxExtractableKnowledgeLimit>
+    <RTExpPrev_MaxExtractableKnowledgeLimit_Desc>限制能从多少个常识中提取关键词（防止过度提取）</RTExpPrev_MaxExtractableKnowledgeLimit_Desc>
 
+    <!-- ExpandedPreviewSettings.cs Collapsible Sections -->
+    <RTExpPrev_Settings_KeywordManagementSection>关键词管理</RTExpPrev_Settings_KeywordManagementSection>
+    <RTExpPrev_Settings_ExperimentalKeywordSection>(实验性)新关键词提取逻辑</RTExpPrev_Settings_ExperimentalKeywordSection>
+    <RTExpPrev_Settings_EnableNewKeywordLogic>启用新关键词提取逻辑</RTExpPrev_Settings_EnableNewKeywordLogic>
+    <RTExpPrev_Settings_ManageStopWordsButton>管理停用词</RTExpPrev_Settings_ManageStopWordsButton>
+    <RTExpPrev_Settings_ChineseKeywordScoring>中文关键词长度评分:</RTExpPrev_Settings_ChineseKeywordScoring>
+    <RTExpPrev_Settings_ChineseLength2>  2字: {0}</RTExpPrev_Settings_ChineseLength2>
+    <RTExpPrev_Settings_ChineseLength3>  3字: {0}</RTExpPrev_Settings_ChineseLength3>
+    <RTExpPrev_Settings_ChineseLength4>  4字: {0}</RTExpPrev_Settings_ChineseLength4>
+    <RTExpPrev_Settings_ChineseLength5>  5字: {0}</RTExpPrev_Settings_ChineseLength5>
+    <RTExpPrev_Settings_ChineseLength6>  6字: {0}</RTExpPrev_Settings_ChineseLength6>
+    <RTExpPrev_Settings_EnglishKeywordScoring>英文关键词评分:</RTExpPrev_Settings_EnglishKeywordScoring>
+    <RTExpPrev_Settings_EnglishBaseScore>  基础分: {0}</RTExpPrev_Settings_EnglishBaseScore>
+    <RTExpPrev_Settings_EnglishIncrementScore>  每字符增量: {0}</RTExpPrev_Settings_EnglishIncrementScore>
+    <RTExpPrev_Settings_EnglishMaxScore>  最高分: {0}</RTExpPrev_Settings_EnglishMaxScore>
+    <RTExpPrev_Settings_CohesionBonus>凝固度加分:</RTExpPrev_Settings_CohesionBonus>
+    <RTExpPrev_Settings_CohesionBonusPerMatch>  每次匹配加分: {0}</RTExpPrev_Settings_CohesionBonusPerMatch>
+    <RTExpPrev_Settings_CohesionMaxBonus>  最高加分: {0}</RTExpPrev_Settings_CohesionMaxBonus>
 
-    <!-- MECPSettings.cs 翻译 -->
+    <!-- Dialog_StopWords.cs Translations -->
+    <RTExpPrev_StopWords_Title>停用词管理</RTExpPrev_StopWords_Title>
+    <RTExpPrev_StopWords_Description>在这里添加或移除开头和结尾的停用词，每行一个。</RTExpPrev_StopWords_Description>
+    <RTExpPrev_StopWords_StartWords>开头停用词:</RTExpPrev_StopWords_StartWords>
+    <RTExpPrev_StopWords_EndWords>结尾停用词:</RTExpPrev_StopWords_EndWords>
+
+    <!-- Dialog_CommonKnowledge_Patch.cs Translations -->
+    <RTExpPrev_SearchResult>搜索结果: {0} / {1}</RTExpPrev_SearchResult>
+    <RTExpPrev_AllowContentMatchingTooltip>允许内容匹配：此常识会与'常识内容关键词'进行匹配</RTExpPrev_AllowContentMatchingTooltip>
+    <RTExpPrev_DisallowContentMatchingTooltip>禁止内容匹配：此常识不会与'常识内容关键词'进行匹配</RTExpPrev_DisallowContentMatchingTooltip>
+
+    <!-- MECPSettings.cs Translations -->
     <RTExpPrev_Settings_Title>RimTalk 扩展关键词增强</RTExpPrev_Settings_Title>
     <RTExpPrev_Settings_Description>在这里添加你希望被优先识别的关键词。只要它们出现在对话上下文中，就会被强制加入最终的关键词列表。</RTExpPrev_Settings_Description>
     <RTExpPrev_Settings_KeywordColumn>关键词 (Keyword)</RTExpPrev_Settings_KeywordColumn>
@@ -30,9 +59,10 @@
     <RTExpPrev_Settings_ExplanationKeyword>- 关键词: 你希望被优先识别的词语。</RTExpPrev_Settings_ExplanationKeyword>
     <RTExpPrev_Settings_ExplanationWholeWord>- 整词匹配: 勾选后，'cat' 不会匹配 'caterpillar'。对中文词语效果有限。</RTExpPrev_Settings_ExplanationWholeWord>
     <RTExpPrev_Settings_ExplanationCaseSensitive>- 区分大小写: 勾选后，'Apple' 和 'apple' 将被视为不同的词。</RTExpPrev_Settings_ExplanationCaseSensitive>
-	<RTExpPrev_Settings_NegativeColumn>负面</RTExpPrev_Settings_NegativeColumn>
+    <RTExpPrev_Settings_NegativeColumn>负面</RTExpPrev_Settings_NegativeColumn>
     <RTExpPrev_Settings_ExplanationNegative>- 负面: 勾选后，若此关键词出现在上下文中，它将被从AI的思考素材中移除，用于防止AI被特定词语带偏。</RTExpPrev_Settings_ExplanationNegative>
-	    <!-- ⭐ 新增: 导入功能 -->
+    
+    <!-- Import Function -->
     <RTExpPrev_Settings_ImportButton>批量导入...</RTExpPrev_Settings_ImportButton>
     <RTExpPrev_Import_Title>批量导入关键词</RTExpPrev_Import_Title>
     <RTExpPrev_Import_Description>在此处粘贴关键词。支持使用逗号(,), 空格, 中文逗号(，), 顿号(、)或分号(;)进行分隔。导入后将自动去重。</RTExpPrev_Import_Description>
@@ -40,7 +70,7 @@
     <RTExpPrev_Import_CancelButton>取消</RTExpPrev_Import_CancelButton>
     <RTExpPrev_Import_SuccessMessage>成功导入 {0} 个新关键词。</RTExpPrev_Import_SuccessMessage>
 
-    <!-- 新增: Dialog_SaveGameKeywords.cs & KeywordEditorUI.cs 翻译 -->
+    <!-- Dialog_SaveGameKeywords.cs & KeywordEditorUI.cs Translations -->
     <RTExpPrev_SaveGameKeywords_LoadSaveFirst>请先进入存档后打开此窗口</RTExpPrev_SaveGameKeywords_LoadSaveFirst>
     <RTExpPrev_SaveGameKeywords_Title>存档重要关键词</RTExpPrev_SaveGameKeywords_Title>
     <RTExpPrev_SaveGameKeywords_AddNewKeyword>添加新关键词</RTExpPrev_SaveGameKeywords_AddNewKeyword>
@@ -50,79 +80,12 @@
     <RTExpPrev_KeywordEditor_KeywordHeader>关键词</RTExpPrev_KeywordEditor_KeywordHeader>
     <RTExpPrev_KeywordEditor_WholeWordHeader>整字匹配</RTExpPrev_KeywordEditor_WholeWordHeader>
 
-
-    <!-- Dialog_ExpandedInjectionPreviewNew.cs / injectionpreviewPatches.cs 翻译 -->
-    <RTExpPrev_Preview_Title>🔍 增强型调试预览器 - RimTalk JSON 模拟</RTExpPrev_Preview_Title>
-    <RTExpPrev_Preview_NoColonistsAvailable>没有可用的殖民者\n\n请进入游戏并加载存档</RTExpPrev_Preview_NoColonistsAvailable>
-    <RTExpPrev_Preview_RefreshButton>刷新预览</RTExpPrev_Preview_RefreshButton>
-
-    <!-- Pawn Selectors -->
-    <RTExpPrev_Preview_CurrentPawnLabel>当前角色：</RTExpPrev_Preview_CurrentPawnLabel>
-    <RTExpPrev_Preview_None>无</RTExpPrev_Preview_None>
-    <RTExpPrev_Preview_TargetPawnLabel>目标角色：</RTExpPrev_Preview_TargetPawnLabel>
-    <RTExpPrev_Preview_NoneClickToSelect>无（点击选择）</RTExpPrev_Preview_NoneClickToSelect>
-    <RTExpPrev_Preview_ClearButton>清除</RTExpPrev_Preview_ClearButton>
-    <RTExpPrev_Preview_SameAsCurrent>(与当前角色相同)</RTExpPrev_Preview_SameAsCurrent>
-
-    <!-- Stats Section -->
-    <RTExpPrev_Preview_NoMemoryComponent>该殖民者没有记忆组件</RTExpPrev_Preview_NoMemoryComponent>
-    <RTExpPrev_Preview_MemoryStatsHeader>记忆层级统计：</RTExpPrev_Preview_MemoryStatsHeader>
-    <RTExpPrev_Preview_ABMStats>ABM: {0}/6 (固定，不注入)</RTExpPrev_Preview_ABMStats>
-    <RTExpPrev_Preview_SCMStats>SCM: {0}</RTExpPrev_Preview_SCMStats>
-    <RTExpPrev_Preview_ELSStats>ELS: {0}</RTExpPrev_Preview_ELSStats>
-    <RTExpPrev_Preview_CLPAStats>CLPA: {0}</RTExpPrev_Preview_CLPAStats>
-    <RTExpPrev_Preview_KnowledgeStatsHeader>常识库统计：</RTExpPrev_Preview_KnowledgeStatsHeader>
-    <RTExpPrev_Preview_KnowledgeStats>总数: {0} | 启用: {1}</RTExpPrev_Preview_KnowledgeStats>
-    <RTExpPrev_Preview_InjectionConfigHeader>注入配置：</RTExpPrev_Preview_InjectionConfigHeader>
-    <RTExpPrev_Preview_ModeDynamic>动态评分</RTExpPrev_Preview_ModeDynamic>
-    <RTExpPrev_Preview_ModeStatic>静态顺序</RTExpPrev_Preview_ModeStatic>
-    <RTExpPrev_Preview_ConfigDetails>模式: {0} | 最大记忆: {1} | 最大常识: {2} | 记忆阈值: {3} | 常识阈值: {4}</RTExpPrev_Preview_ConfigDetails>
-	<RTExpPrev_Preview_GlobalKeywordsButton>全局重要关键词</RTExpPrev_Preview_GlobalKeywordsButton>
-	<RTExpPrev_Preview_SaveKeywordsButton>存档重要关键词</RTExpPrev_Preview_SaveKeywordsButton>
-    <!-- JSON Simulation Preview -->
-    <RTExpPrev_Preview_JSONSimulationHeader>RimTalk JSON请求模拟</RTExpPrev_Preview_JSONSimulationHeader>
-
-    <!-- Detailed Analysis Headers -->
-    <RTExpPrev_Preview_KeywordDetailsHeader>🔑 关键词提取详情</RTExpPrev_Preview_KeywordDetailsHeader>
+    <!-- injectionpreviewPatches.cs Translations -->
     <RTExpPrev_Preview_KnowledgeScoringHeader>🎓 常识评分详情</RTExpPrev_Preview_KnowledgeScoringHeader>
     <RTExpPrev_Preview_KnowledgeContentKeywordsHeader>📚 【常识内容关键词列表】</RTExpPrev_Preview_KnowledgeContentKeywordsHeader>
     <RTExpPrev_Preview_KeywordGroupHeader>【{0}字关键词】 ({1}个):</RTExpPrev_Preview_KeywordGroupHeader>
-    <RTExpPrev_Preview_NoKnowledgeContentKeywords>无常识内容关键词</RTExpPrev_Preview_NoKnowledgeContentKeywords>
-
-    <!-- Keyword Extraction Details -->
-    <RTExpPrev_Preview_ClickRefreshKeywords>点击 '刷新预览' 获取关键词数据.</RTExpPrev_Preview_ClickRefreshKeywords>
-    <RTExpPrev_Preview_ContextKeywordsCount>从上下文提取: {0} 个关键词</RTExpPrev_Preview_ContextKeywordsCount>
-    <RTExpPrev_Preview_PawnInfoKeywordsCount>从角色 '{0}' 信息提取: {1} 个关键词</RTExpPrev_Preview_PawnInfoKeywordsCount>
-    <RTExpPrev_Preview_TotalKeywordsCount>总关键词: {0} 个</RTExpPrev_Preview_TotalKeywordsCount>
-    <RTExpPrev_Preview_CoreKeywordsHeader>核心关键词 (来自上下文):</RTExpPrev_Preview_CoreKeywordsHeader>
-    <RTExpPrev_Preview_ShowPawnKeywordsToggle>显示角色关键词详细分类</RTExpPrev_Preview_ShowPawnKeywordsToggle>
-    <RTExpPrev_Preview_PawnKeywordsCategoryHeader>--- '{0}' 的关键词分类 ---</RTExpPrev_Preview_PawnKeywordsCategoryHeader>
-    <RTExpPrev_Preview_NameKeywords>👤 名字关键词</RTExpPrev_Preview_NameKeywords>
-    <RTExpPrev_Preview_AgeKeywords>🎂 年龄关键词</RTExpPrev_Preview_AgeKeywords>
-    <RTExpPrev_Preview_GenderKeywords>⚥ 性别关键词</RTExpPrev_Preview_GenderKeywords>
-    <RTExpPrev_Preview_RaceKeywords>🧬 种族关键词</RTExpPrev_Preview_RaceKeywords>
-    <RTExpPrev_Preview_TraitKeywords>🎭 特质关键词</RTExpPrev_Preview_TraitKeywords>
-    <RTExpPrev_Preview_SkillKeywords>🛠️ 技能关键词</RTExpPrev_Preview_SkillKeywords>
-    <RTExpPrev_Preview_SkillLevelKeywords>⭐ 技能等级关键词</RTExpPrev_Preview_SkillLevelKeywords>
-    <RTExpPrev_Preview_HealthKeywords>💚 健康状况关键词</RTExpPrev_Preview_HealthKeywords>
-    <RTExpPrev_Preview_RelationshipKeywords>👥 关系网络关键词</RTExpPrev_Preview_RelationshipKeywords>
-    <RTExpPrev_Preview_AdultBackstoryKeywords>📖 成年背景关键词</RTExpPrev_Preview_AdultBackstoryKeywords>
-    <RTExpPrev_Preview_ChildhoodKeywords>🎈 童年背景关键词</RTExpPrev_Preview_ChildhoodKeywords>
-    <RTExpPrev_Preview_CountParentheses>({0}个)</RTExpPrev_Preview_CountParentheses>
     <RTExpPrev_Preview_MoreKeywords>... (还有 {0} 个)</RTExpPrev_Preview_MoreKeywords>
-	    <!-- ⭐ 新增: 复制关键词功能 -->
-    <RTExpPrev_Preview_CopyContextKeywords>复制上下文关键词</RTExpPrev_Preview_CopyContextKeywords>
-    <RTExpPrev_Preview_CopyContextKeywordsTooltip>复制从当前上下文提取的20个核心关键词到剪贴板，方便批量导入。</RTExpPrev_Preview_CopyContextKeywordsTooltip>
-    <RTExpPrev_Preview_CopySuccess>已复制 {0} 个关键词到剪贴板。</RTExpPrev_Preview_CopySuccess>
-    <RTExpPrev_Preview_CopyNothing>没有可复制的关键词。</RTExpPrev_Preview_CopyNothing>
-
-	    <!-- 新增：目标角色关键词分类标题 -->
-    <RTExpPrev_Preview_TargetPawnKeywordsCategoryHeader>--- '{0}' 的关键词分类 (目标角色) ---</RTExpPrev_Preview_TargetPawnKeywordsCategoryHeader>
-	    <!-- ⭐ 新增: 用于目标角色 -->
-    <RTExpPrev_Preview_TargetPawnInfoKeywordsCount>从目标 '{0}' 信息提取: {1} 个关键词</RTExpPrev_Preview_TargetPawnInfoKeywordsCount>
-    <RTExpPrev_Preview_TotalKeywordsCount>总关键词: {0} 个</RTExpPrev_Preview_TotalKeywordsCount>
-
-    <!-- Knowledge Scoring Details -->
+    <RTExpPrev_Preview_NoKnowledgeContentKeywords>无常识内容关键词</RTExpPrev_Preview_NoKnowledgeContentKeywords>
     <RTExpPrev_Preview_ClickRefreshKnowledgeScores>点击 '刷新预览' 获取常识评分数据.</RTExpPrev_Preview_ClickRefreshKnowledgeScores>
     <RTExpPrev_Preview_KnowledgeInjectionThreshold>常识注入阈值: {0}</RTExpPrev_Preview_KnowledgeInjectionThreshold>
     <RTExpPrev_Preview_ShowAllKnowledgeToggle>显示所有常识 (包括未通过阈值的)</RTExpPrev_Preview_ShowAllKnowledgeToggle>
@@ -134,83 +97,9 @@
     <RTExpPrev_Preview_ExactMatchBonus>├─ 精确匹配加成: {0}</RTExpPrev_Preview_ExactMatchBonus>
     <RTExpPrev_Preview_Status>└─ 状态: {0}</RTExpPrev_Preview_Status>
     <RTExpPrev_Preview_MatchedKeywordsList>(匹配: {0}{1})</RTExpPrev_Preview_MatchedKeywordsList>
-    <RTExpPrev_Preview_MatchedTagsList>(匹配标签: {0}{1})</RTExpPrev_Preview_MatchedTagsList>
     <RTExpPrev_Preview_MoreMatchKeywords>...({0} more)</RTExpPrev_Preview_MoreMatchKeywords>
-
-    <!-- Refresh Preview Logic Strings -->
-    <RTExpPrev_Preview_NoPawnSelected>未选择殖民者</RTExpPrev_Preview_NoPawnSelected>
-    <RTExpPrev_Preview_CannotLoadSettings>无法加载Mod设置</RTExpPrev_Preview_CannotLoadSettings>
-    <RTExpPrev_Preview_JSONSimulationBlock_Start>╔════════════════════════════════════════════════════════════════════════╗</RTExpPrev_Preview_JSONSimulationBlock_Start>
-    <RTExpPrev_Preview_JSONSimulationBlock_Title>║        RimTalk API JSON 请求模拟 (ExpandMemory 注入部分)             ║</RTExpPrev_Preview_JSONSimulationBlock_Title>
-    <RTExpPrev_Preview_JSONSimulationBlock_End>╚════════════════════════════════════════════════════════════════════════╝</RTExpPrev_Preview_JSONSimulationBlock_End>
-    <RTExpPrev_Preview_PawnLabel>殖民者: {0}</RTExpPrev_Preview_PawnLabel>
-    <RTExpPrev_Preview_TargetPawnLabel_WithPawn>目标角色: {0}</RTExpPrev_Preview_TargetPawnLabel_WithPawn>
-    <RTExpPrev_Preview_Time>时间: {0}</RTExpPrev_Preview_Time>
-    <RTExpPrev_Preview_InjectionMode>注入模式: {0}</RTExpPrev_Preview_InjectionMode>
-    <RTExpPrev_Preview_ContextEmpty>上下文: 空（基于重要性+层级评分）</RTExpPrev_Preview_ContextEmpty>
-    <RTExpPrev_Preview_ContextInputPreview>上下文: "{0}..."</RTExpPrev_Preview_ContextInputPreview>
-    <RTExpPrev_Preview_KnowledgeSectionHeader>【常识】</RTExpPrev_Preview_KnowledgeSectionHeader>
-    <RTExpPrev_Preview_RimTalkSystemPrompt_Part1>你是一个RimWorld殖民地的角色扮演AI。</RTExpPrev_Preview_RimTalkSystemPrompt_Part1>
-    <RTExpPrev_Preview_RimTalkSystemPrompt_Part2>你正在扮演 {0}。</RTExpPrev_Preview_RimTalkSystemPrompt_Part2>
-    <RTExpPrev_Preview_MemorySectionHeader>【记忆】</RTExpPrev_Preview_MemorySectionHeader>
-    <RTExpPrev_Preview_Divider>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━══</RTExpPrev_Preview_Divider>
-    <RTExpPrev_Preview_FullJSONStructureHeader>📋 完整的 JSON 请求结构:</RTExpPrev_Preview_FullJSONStructureHeader>
-    <RTExpPrev_Preview_ContentTruncated>... (共 {0} 行，省略剩余部分)</RTExpPrev_Preview_ContentTruncated>
-    <RTExpPrev_Preview_UserDialoguePlaceholder>[用户输入的对话内容]</RTExpPrev_Preview_UserDialoguePlaceholder>
-    <RTExpPrev_Preview_MemoryInjectionAnalysisHeader>📝 【ExpandMemory - 记忆注入详细分析】</RTExpPrev_Preview_MemoryInjectionAnalysisHeader>
-    <RTExpPrev_Preview_DynamicMemorySelectionCount>🎯 动态评分选择了 {0} 条记忆</RTExpPrev_Preview_DynamicMemorySelectionCount>
-    <RTExpPrev_Preview_ScoringThreshold>📊 评分阈值: {0} (低于此分数不注入)</RTExpPrev_Preview_ScoringThreshold>
-    <RTExpPrev_Preview_MemoryScoreDetail>[{0}] {1} 评分: {2}</RTExpPrev_Preview_MemoryScoreDetail>
-    <RTExpPrev_Preview_MemorySourceType>来源: {0} | 类型: {1}</RTExpPrev_Preview_MemorySourceType>
-    <RTExpPrev_Preview_ImportanceScore>├─ 重要性: {0}</RTExpPrev_Preview_ImportanceScore>
-    <RTExpPrev_Preview_KeywordScore>├─ 关键词: {0}</RTExpPrev_Preview_KeywordScore>
-    <RTExpPrev_Preview_TimeScore>├─ 时间: {0} (SCM/ELS不计时间)</RTExpPrev_Preview_TimeScore>
-    <RTExpPrev_Preview_BonusScore>└─ 加成: {0} (层级+固定+编辑)</RTExpPrev_Preview_BonusScore>
-    <RTExpPrev_Preview_MemoryContent>内容: "{0}"</RTExpPrev_Preview_MemoryContent>
-    <RTExpPrev_Preview_NoMemoryThreshold>⚠️ 没有记忆达到阈值，返回 null (不注入记忆)</RTExpPrev_Preview_NoMemoryThreshold>
-    <RTExpPrev_Preview_CurrentThreshold>📊 当前阈值: {0}</RTExpPrev_Preview_CurrentThreshold>
-    <RTExpPrev_Preview_KnowledgeInjectionInfoHeader>🎓 【ExpandMemory - 常识库注入信息】</RTExpPrev_Preview_KnowledgeInjectionInfoHeader>
-    <RTExpPrev_Preview_DynamicKnowledgeSelectionCount>🎯 动态评分选择了 {0} 条常识 (详细评分请看右侧面板)</RTExpPrev_Preview_DynamicKnowledgeSelectionCount>
-    <RTExpPrev_Preview_KnowledgeEntryScore>- [{0}] {1} (得分: {2})</RTExpPrev_Preview_KnowledgeEntryScore>
-    <RTExpPrev_Preview_NoKnowledgeThreshold>⚠️ 没有常识达到阈值，返回 null (不注入常识)</RTExpPrev_Preview_NoKnowledgeThreshold>
-    <RTExpPrev_Preview_InjectionStatsHeader>📊 【注入统计】</RTExpPrev_Preview_InjectionStatsHeader>
-    <RTExpPrev_Preview_MemoryInjectedCount>✅ 记忆注入: {0} 条</RTExpPrev_Preview_MemoryInjectedCount>
-    <RTExpPrev_Preview_KnowledgeInjectedCount>✅ 常识注入: {0} 条</RTExpPrev_Preview_KnowledgeInjectedCount>
-    <RTExpPrev_Preview_TokenEstimate>📦 总Token估算: ~{0} tokens</RTExpPrev_Preview_TokenEstimate>
-    <RTExpPrev_Preview_CostEstimate>💰 API成本估算: ~${0} (GPT-4)</RTExpPrev_Preview_CostEstimate>
-    <RTExpPrev_Preview_ThankYouMessage>感谢使用 RimTalk 调试预览器！</RTExpPrev_Preview_ThankYouMessage>
-    <RTExpPrev_Preview_ColorLegendHeader>💡 【颜色标注说明】</RTExpPrev_Preview_ColorLegendHeader>
-    <RTExpPrev_Preview_Legend_ABM>🟦 [ABM] - 超短期记忆 (不会被注入，保留给 TalkHistory)</RTExpPrev_Preview_Legend_ABM>
-    <RTExpPrev_Preview_Legend_SCM>🟨 [SCM] - 短期记忆 (近期事件，无时间加成)</RTExpPrev_Preview_Legend_SCM>
-    <RTExpPrev_Preview_Legend_ELS>🟧 [ELS] - 中期记忆 (AI总结，无时间加成)</RTExpPrev_Preview_Legend_ELS>
-    <RTExpPrev_Preview_Legend_CLPA>🟪 [CLPA] - 长期记忆 (核心人设，有时间加成)</RTExpPrev_Preview_Legend_CLPA>
-    <RTExpPrev_Preview_Legend_Knowledge>📘 [常识] - 常识库条目 (世界观/背景知识)</RTExpPrev_Preview_Legend_Knowledge>
-    <RTExpPrev_Preview_ErrorGenerating>生成预览时发生错误: {0}\n{1}</RTExpPrev_Preview_ErrorGenerating>
-
-    <!-- Context Input / Load Last Context -->
-    <RTExpPrev_Preview_ContextInputLabel>上下文输入：</RTExpPrev_Preview_ContextInputLabel>
-    <RTExpPrev_Preview_LoadLastInputButton>读取上次输入 📥</RTExpPrev_Preview_LoadLastInputButton>
-    <RTExpPrev_Preview_LoadLastInputTooltip>从RimTalk读取最后一次发送给AI的对话内容\n（仅当RimTalk已安装且有对话记录时可用）</RTExpPrev_Preview_LoadLastInputTooltip>
-    <RTExpPrev_Preview_ContextInputPlaceholder>输入对话上下文（例如：最近的对话内容、话题等）\n留空则仅基于重要性和层级评分</RTExpPrev_Preview_ContextInputPlaceholder>
-    <RTExpPrev_Preview_NoRecentDialogue>未找到RimTalk的最近对话记录</RTExpPrev_Preview_NoRecentDialogue>
-
-    <!-- Time Formats -->
-    <RTExpPrev_Time_JustNow>刚刚</RTExpPrev_Time_JustNow>
-    <RTExpPrev_Time_MinutesAgo>{0}分钟前</RTExpPrev_Time_MinutesAgo>
-    <RTExpPrev_Time_HoursAgo>{0}小时前</RTExpPrev_Time_HoursAgo>
-    <RTExpPrev_Time_DaysAgo>{0}天前</RTExpPrev_Time_DaysAgo>
-
-    <!-- Load Context Messages -->
-    <RTExpPrev_Preview_UnknownPawn>未知</RTExpPrev_Preview_UnknownPawn>
-    <RTExpPrev_Preview_LoadSuccess>已加载 {0} 的最后一次对话（{1}）</RTExpPrev_Preview_LoadSuccess>
-    <RTExpPrev_Preview_LoadFailed>读取失败：{0}</RTExpPrev_Preview_LoadFailed>
-    <RTExpPrev_Preview_LoadFailedLogError>Failed to load last RimTalk context: {0}</RTExpPrev_Preview_LoadFailedLogError>
-
-    <!-- Memory Layer Tags -->
-    <RTExpPrev_MemoryLayer_ABM>ABM (不注入)</RTExpPrev_MemoryLayer_ABM>
-    <RTExpPrev_MemoryLayer_SCM>SCM (ExpandMemory)</RTExpPrev_MemoryLayer_SCM>
-    <RTExpPrev_MemoryLayer_ELS>ELS (ExpandMemory)</RTExpPrev_MemoryLayer_ELS>
-    <RTExpPrev_MemoryLayer_CLPA>CLPA (ExpandMemory)</RTExpPrev_MemoryLayer_CLPA>
-    <RTExpPrev_MemoryLayer_Unknown>Unknown</RTExpPrev_MemoryLayer_Unknown>
+    <RTExpPrev_Preview_MatchedTagsList>(匹配标签: {0}{1})</RTExpPrev_Preview_MatchedTagsList>
+    <RTExpPrev_Preview_GlobalKeywordsButton>全局重要关键词</RTExpPrev_Preview_GlobalKeywordsButton>
+    <RTExpPrev_Preview_SaveKeywordsButton>存档重要关键词</RTExpPrev_Preview_SaveKeywordsButton>
 
 </LanguageData>
