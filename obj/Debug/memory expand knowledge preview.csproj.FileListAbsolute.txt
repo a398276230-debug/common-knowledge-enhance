@@ -256,34 +256,6 @@ F:\Source\obj\Debug\RimTalk_ExpandedPreview.dll
 F:\Source\obj\Debug\RimTalk_ExpandedPreview.pdb
 F:\git library\common-knowledge-preview\bin\Debug\RimTalk_ExpandedPreview.dll
 F:\git library\common-knowledge-preview\bin\Debug\RimTalk_ExpandedPreview.pdb
-F:\git library\common-knowledge-preview\bin\Debug\NAudio.dll
-F:\git library\common-knowledge-preview\bin\Debug\NVorbis.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.AudioModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\Unity.Collections.dll
-F:\git library\common-knowledge-preview\bin\Debug\Unity.Burst.dll
-F:\git library\common-knowledge-preview\bin\Debug\Unity.Mathematics.dll
-F:\git library\common-knowledge-preview\bin\Debug\com.rlabrecque.steamworks.net.dll
-F:\git library\common-knowledge-preview\bin\Debug\Assembly-CSharp-firstpass.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.AssetBundleModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.PhysicsModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\Unity.TextMeshPro.dll
-F:\git library\common-knowledge-preview\bin\Debug\ISharpZipLib.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.InputLegacyModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.PerformanceReportingModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.ImageConversionModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.ScreenCaptureModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.UI.dll
-F:\git library\common-knowledge-preview\bin\Debug\netstandard.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.SharedInternalsModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.TextCoreTextEngineModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.PropertiesModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\Unity.Collections.LowLevel.ILSupport.dll
-F:\git library\common-knowledge-preview\bin\Debug\Unity.Burst.Unsafe.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.TextCoreFontEngineModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.UIModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.Physics2DModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.AnimationModule.dll
-F:\git library\common-knowledge-preview\bin\Debug\UnityEngine.SpriteShapeModule.dll
 F:\git library\common-knowledge-preview\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
 F:\git library\common-knowledge-preview\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
 F:\git library\common-knowledge-preview\obj\Debug\memory e.0700D4EC.Up2Date

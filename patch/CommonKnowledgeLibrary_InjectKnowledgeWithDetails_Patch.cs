@@ -66,19 +66,53 @@ namespace RimTalk_ExpandedPreview
                 return; // 没有常识，直接返回
             }
 
-            // ⭐ 利用原版方法已经计算好的结果作为起点
-            List<string> combinedContextKeywords = new List<string>(keywordInfo.ContextKeywords);
+            // ⭐ 修复：过滤掉与Pawn信息重复的上下文关键词（包括N元产物）
+            // 逻辑：如果Pawn信息中有"绮罗族"，则上下文中的"绮罗族"、"绮罗"、"罗族"都应该被移除
+            var allPawnKeywordsForFilter = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             if (keywordInfo.PawnInfo != null)
             {
-                var pawnKeywords = GetAllPawnKeywords(keywordInfo.PawnInfo);
-                combinedContextKeywords.AddRange(pawnKeywords);
+                foreach (var kw in GetAllPawnKeywords(keywordInfo.PawnInfo)) allPawnKeywordsForFilter.Add(kw);
             }
             if (targetPawn != null && targetPawn != currentPawn)
             {
                  var extractPawnKeywordsMethod = AccessTools.Method(typeof(CommonKnowledgeLibrary), "ExtractPawnKeywordsWithDetails");
                  var targetPawnInfo = (PawnKeywordInfo)extractPawnKeywordsMethod.Invoke(__instance, new object[] { new List<string>(), targetPawn });
-                 combinedContextKeywords.AddRange(GetAllPawnKeywords(targetPawnInfo));
+                 foreach (var kw in GetAllPawnKeywords(targetPawnInfo)) allPawnKeywordsForFilter.Add(kw);
             }
+
+            if (allPawnKeywordsForFilter.Count > 0)
+            {
+                int removedCount = keywordInfo.ContextKeywords.RemoveAll(ctxKw => 
+                {
+                    // 如果完全匹配，移除
+                    if (allPawnKeywordsForFilter.Contains(ctxKw)) return true;
+                    
+                    // 如果是Pawn关键词的子串（N元产物），移除
+                    // 例如：ctxKw="绮罗" (2字), pawnKw="绮罗族" (3字) -> "绮罗族".Contains("绮罗") -> True -> Remove
+                    foreach (var pawnKw in allPawnKeywordsForFilter)
+                    {
+                        if (pawnKw.Length > ctxKw.Length && pawnKw.IndexOf(ctxKw, StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+                
+                if (Prefs.DevMode && removedCount > 0)
+                {
+                    Log.Message($"[MECP Patch] Filtered {removedCount} context keywords that overlapped with pawn info.");
+                }
+            }
+
+            // ⭐ 利用原版方法已经计算好的结果作为起点
+            List<string> combinedContextKeywords = new List<string>(keywordInfo.ContextKeywords);
+            // 注意：这里不需要再添加PawnKeywords了，因为我们刚刚过滤的就是它们
+            // 但是为了评分计算，我们需要完整的关键词集合（上下文+Pawn）
+            // 过滤只是为了避免“上下文关键词”列表中出现冗余，但评分时我们希望Pawn关键词也能贡献分数
+            
+            // 重新构建 combinedContextKeywords
+            combinedContextKeywords.AddRange(allPawnKeywordsForFilter);
             combinedContextKeywords = combinedContextKeywords.Distinct().ToList();
 
             float knowledgeScoreThreshold = RimTalkMemoryPatchMod.Settings?.knowledgeScoreThreshold ?? 0.1f;
@@ -181,8 +215,21 @@ namespace RimTalk_ExpandedPreview
                         // ⭐ 检查是否允许提取关键词
                         if (KnowledgeExtractionData.IsKeywordExtractionAllowed(detail.Entry.id) && !string.IsNullOrEmpty(detail.Entry.content))
                         {
+                            // 收集所有Pawn关键词用于过滤
+                            var allPawnKeywords = new List<string>();
+                            if (keywordInfo.PawnInfo != null)
+                            {
+                                allPawnKeywords.AddRange(GetAllPawnKeywords(keywordInfo.PawnInfo));
+                            }
+                            if (targetPawn != null && targetPawn != currentPawn)
+                            {
+                                var extractPawnKeywordsMethod = AccessTools.Method(typeof(CommonKnowledgeLibrary), "ExtractPawnKeywordsWithDetails");
+                                var targetPawnInfo = (PawnKeywordInfo)extractPawnKeywordsMethod.Invoke(__instance, new object[] { new List<string>(), targetPawn });
+                                allPawnKeywords.AddRange(GetAllPawnKeywords(targetPawnInfo));
+                            }
+
                             var keywords = (RimTalk_ExpandedPreviewMod.Settings.useNewKeywordLogic
-                                ? KeywordScoring.ExtractAndScoreKeywords(detail.Entry.content, RimTalk_ExpandedPreviewMod.Settings.knowledgeContentKeywordLimit)
+                                ? KeywordScoring.ExtractAndScoreKeywords(detail.Entry.content, RimTalk_ExpandedPreviewMod.Settings.knowledgeContentKeywordLimit, allPawnKeywords)
                                 : SuperKeywordEngine.ExtractKeywords(detail.Entry.content, 100)
                                     .OrderByDescending(p => p.Word.Length)
                                     .ThenBy(p => p.Word, StringComparer.Ordinal)

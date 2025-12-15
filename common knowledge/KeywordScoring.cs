@@ -10,9 +10,24 @@ namespace RimTalk_ExpandedPreview
 {
     public static class KeywordScoring
     {
-        public static List<string> ExtractAndScoreKeywords(string text, int maxKeywords)
+        public static List<string> ExtractAndScoreKeywords(string text, int maxKeywords, List<string> pawnKeywords = null)
         {
             var weightedKeywords = SuperKeywordEngine.ExtractKeywords(text, 100);
+
+            if (pawnKeywords != null && pawnKeywords.Count > 0)
+            {
+                weightedKeywords.RemoveAll(kw => 
+                {
+                    foreach (var pk in pawnKeywords)
+                    {
+                        if (pk.IndexOf(kw.Word, StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            }
             
             var stopWordsField = AccessTools.Field(typeof(SuperKeywordEngine), "StopWords");
             var baseStopWords = (HashSet<string>)stopWordsField.GetValue(null);
