@@ -6,8 +6,9 @@ using UnityEngine;
 using Verse;
 using RimTalk.Memory;
 using RimTalk.Memory.UI;
+using RimTalk.CommonKnowledgeEnhance;
 
-namespace RimTalk.ExpandedPreview.Patches
+namespace RimTalk.CommonKnowledgeEnhance.Patches
 {
     /// <summary>
     /// 为Dialog_CommonKnowledge的每个常识条目添加两个按钮：

@@ -2,7 +2,7 @@ using HarmonyLib;
 using Verse;
 using RimWorld;
 
-namespace RimTalk.ExpandedPreview
+namespace RimTalk.CommonKnowledgeEnhance
 {
     /// <summary>
     /// RimTalk-ExpandMemory 常识库增强预览版
@@ -11,20 +11,20 @@ namespace RimTalk.ExpandedPreview
     /// 2. 常识触发常识（多轮匹配）
     /// 3. UI增强：允许设置常识是否可被提取内容、是否可被匹配
     /// </summary>
-    public class RimTalkExpandedPreview : Mod
+    public class RimTalkCommonKnowledgeEnhance : Mod
     {
-        public static RimTalkExpandedPreviewSettings Settings;
+        public static RimTalkCommonKnowledgeEnhanceSettings Settings;
         public static Harmony HarmonyInstance;
 
-        public RimTalkExpandedPreview(ModContentPack content) : base(content)
+        public RimTalkCommonKnowledgeEnhance(ModContentPack content) : base(content)
         {
-            Settings = GetSettings<RimTalkExpandedPreviewSettings>();
+            Settings = GetSettings<RimTalkCommonKnowledgeEnhanceSettings>();
             
             // 初始化Harmony
-            HarmonyInstance = new Harmony("rimtalk.expandedpreview");
+            HarmonyInstance = new Harmony("RimTalk.CommonKnowledgeEnhance");
             HarmonyInstance.PatchAll();
             
-            Log.Message("[RimTalk-ExpandedPreview] Mod initialized with Harmony patches applied.");
+            Log.Message("[RimTalk-CommonKnowledgeEnhance] Mod initialized with Harmony patches applied.");
         }
 
         public override void DoSettingsWindowContents(UnityEngine.Rect inRect)
@@ -34,14 +34,14 @@ namespace RimTalk.ExpandedPreview
 
         public override string SettingsCategory()
         {
-            return "RimTalk Expanded Preview";
+            return "RimTalk Common Knowledge Enhance";
         }
     }
 
     /// <summary>
     /// Mod设置
     /// </summary>
-    public class RimTalkExpandedPreviewSettings : ModSettings
+    public class RimTalkCommonKnowledgeEnhanceSettings : ModSettings
     {
         // 是否启用新的标签匹配逻辑
         public bool useNewTagMatching = true;

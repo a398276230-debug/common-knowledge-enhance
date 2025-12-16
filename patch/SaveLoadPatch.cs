@@ -1,8 +1,9 @@
 using HarmonyLib;
 using Verse;
 using RimTalk.Memory;
+using RimTalk.CommonKnowledgeEnhance;
 
-namespace RimTalk.ExpandedPreview.Patches
+namespace RimTalk.CommonKnowledgeEnhance.Patches
 {
     /// <summary>
     /// 确保扩展属性能够被保存和加载

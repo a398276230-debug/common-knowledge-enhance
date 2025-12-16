@@ -2,7 +2,7 @@ using System;
 using Verse;
 using RimTalk.Memory;
 
-namespace RimTalk.ExpandedPreview
+namespace RimTalk.CommonKnowledgeEnhance
 {
     /// <summary>
     /// 扩展的常识条目

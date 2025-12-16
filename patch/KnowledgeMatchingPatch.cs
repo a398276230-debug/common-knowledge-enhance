@@ -6,8 +6,9 @@ using System.Reflection;
 using HarmonyLib;
 using Verse;
 using RimTalk.Memory;
+using RimTalk.CommonKnowledgeEnhance;
 
-namespace RimTalk.ExpandedPreview.Patches
+namespace RimTalk.CommonKnowledgeEnhance.Patches
 {
     /// <summary>
     /// 拦截并替换前置mod的常识匹配逻辑
@@ -44,7 +45,7 @@ namespace RimTalk.ExpandedPreview.Patches
             if (method1 != null)
             {
                 methods.Add(method1);
-                Log.Message("[RimTalk-ExpandedPreview] Found target method: InjectKnowledgeWithDetails (full version)");
+                Log.Message("[RimTalk-CommonKnowledgeEnhance] Found target method: InjectKnowledgeWithDetails (full version)");
             }
 
             // 方法2：SmartInjectionManager使用的版本（只有out scores）
@@ -65,12 +66,12 @@ namespace RimTalk.ExpandedPreview.Patches
             if (method2 != null)
             {
                 methods.Add(method2);
-                Log.Message("[RimTalk-ExpandedPreview] Found target method: InjectKnowledgeWithDetails (simple version)");
+                Log.Message("[RimTalk-CommonKnowledgeEnhance] Found target method: InjectKnowledgeWithDetails (simple version)");
             }
 
             if (methods.Count == 0)
             {
-                Log.Error("[RimTalk-ExpandedPreview] Failed to find any target methods!");
+                Log.Error("[RimTalk-CommonKnowledgeEnhance] Failed to find any target methods!");
             }
 
             return methods;
@@ -90,7 +91,7 @@ namespace RimTalk.ExpandedPreview.Patches
             MethodBase __originalMethod)
         {
             // 如果未启用新匹配逻辑，使用原始方法
-            if (!RimTalkExpandedPreview.Settings.useNewTagMatching)
+            if (!RimTalkCommonKnowledgeEnhance.Settings.useNewTagMatching)
             {
                 return true; // 继续执行原始方法
             }
@@ -132,7 +133,7 @@ namespace RimTalk.ExpandedPreview.Patches
             if (library.Entries.Count == 0)
                 return string.Empty;
 
-            var settings = RimTalkExpandedPreview.Settings;
+            var settings = RimTalkCommonKnowledgeEnhance.Settings;
             
             // ⭐ 第一轮：构建完整的匹配文本（上下文 + Pawn信息）
             StringBuilder matchTextBuilder = new StringBuilder();
@@ -169,8 +170,9 @@ namespace RimTalk.ExpandedPreview.Patches
                 if (string.IsNullOrEmpty(currentMatchText))
                     break;
 
-                // 本轮匹配的常识
-                var roundMatches = MatchKnowledgeByTags(library, currentMatchText, currentPawn, allMatchedEntries);
+                // 本轮匹配的常识（第一轮round=0不是常识链，第二轮及以后才是）
+                bool isChaining = round > 0;
+                var roundMatches = MatchKnowledgeByTags(library, currentMatchText, currentPawn, allMatchedEntries, isChaining);
                 
                 if (roundMatches.Count == 0)
                     break;
@@ -234,11 +236,13 @@ namespace RimTalk.ExpandedPreview.Patches
         /// <summary>
         /// 通过标签匹配常识（新版：直接用文本包含检查）
         /// </summary>
+        /// <param name="isChaining">是否是常识链匹配（第2轮及以后）</param>
         private static List<CommonKnowledgeEntry> MatchKnowledgeByTags(
             CommonKnowledgeLibrary library,
             string matchText,
             Verse.Pawn currentPawn,
-            HashSet<CommonKnowledgeEntry> alreadyMatched)
+            HashSet<CommonKnowledgeEntry> alreadyMatched,
+            bool isChaining = false)
         {
             var matches = new List<CommonKnowledgeEntry>();
 
@@ -255,8 +259,8 @@ namespace RimTalk.ExpandedPreview.Patches
                 if (!entry.isEnabled)
                     continue;
 
-                // 检查是否允许被匹配
-                if (!ExtendedKnowledgeEntry.CanBeMatched(entry))
+                // ⭐ 只在常识链中检查是否允许被匹配
+                if (isChaining && !ExtendedKnowledgeEntry.CanBeMatched(entry))
                     continue;
 
                 // 检查Pawn限制
@@ -376,7 +380,7 @@ namespace RimTalk.ExpandedPreview.Patches
             }
             catch (Exception ex)
             {
-                Log.Warning($"[RimTalk-ExpandedPreview] Error building pawn info text: {ex.Message}");
+                Log.Warning($"[RimTalk-CommonKnowledgeEnhance] Error building pawn info text: {ex.Message}");
             }
 
             return sb.ToString().Trim();

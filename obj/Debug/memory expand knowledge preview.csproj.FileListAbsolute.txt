@@ -263,3 +263,12 @@ F:\git library\common-knowledge-preview\obj\Debug\RimTalk_ExpandedPreview.dll
 F:\git library\common-knowledge-preview\obj\Debug\RimTalk_ExpandedPreview.pdb
 F:\git library\common-knowledge-preview\bin\Debug\RimTalkMemoryPatch.dll
 F:\git library\common-knowledge-preview\bin\Debug\RimTalkMemoryPatch.pdb
+F:\git library\common-knowledge-enhance\bin\Debug\RimTalk_ExpandedPreview.dll
+F:\git library\common-knowledge-enhance\bin\Debug\RimTalk_ExpandedPreview.pdb
+F:\git library\common-knowledge-enhance\bin\Debug\RimTalkMemoryPatch.dll
+F:\git library\common-knowledge-enhance\bin\Debug\RimTalkMemoryPatch.pdb
+F:\git library\common-knowledge-enhance\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
+F:\git library\common-knowledge-enhance\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
+F:\git library\common-knowledge-enhance\obj\Debug\memory e.0700D4EC.Up2Date
+F:\git library\common-knowledge-enhance\obj\Debug\RimTalk_ExpandedPreview.dll
+F:\git library\common-knowledge-enhance\obj\Debug\RimTalk_ExpandedPreview.pdb
