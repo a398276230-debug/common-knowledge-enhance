@@ -1,6 +1,6 @@
-# RimTalk Expanded Preview - 常识库增强预览版
+# RimTalk Common Knowledge Enhance - 常识库增强预览版
 
-这是一个针对 RimTalk-ExpandMemory 前置mod的增强mod，提供了更智能的常识匹配系统和常识链功能。
+这是一个针对 RimTalk Expand Memory 前置mod的增强mod，提供了更智能的常识匹配系统和常识链功能。
 
 ## 功能特性
 
