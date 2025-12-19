@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RimTalk_ExpandedPreview</RootNamespace>
     <AssemblyName>RimTalk_ExpandedPreview</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -41,6 +41,13 @@
     <Reference Include="RimTalkMemoryPatch">
       <HintPath>D:\steam\steamapps\workshop\content\294100\3608181242\1.6\Assemblies\RimTalkMemoryPatch.dll</HintPath>
     </Reference>
+    <Reference Include="RimTalk">
+      <HintPath>..\..\..\..\workshop\content\294100\3551203752\1.6\Assemblies\RimTalk.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>1.6\Assemblies\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <!-- Standard References -->
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,13 +67,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RimTalkExpandedPreview.cs" />
-    <Compile Include="common knowledge\ExtendedKnowledgeEntry.cs" />
-    <Compile Include="patch\KnowledgeMatchingPatch.cs" />
-    <Compile Include="patch\DialogCommonKnowledgePatch.cs" />
-    <Compile Include="patch\SaveLoadPatch.cs" />
+    <!-- 自动包含 Source 文件夹下所有 .cs 文件 -->
+    <Compile Include="Source\**\*.cs" Exclude="Source\Reference documents\**\*.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="1.6\Assemblies\" />
+    <Copy SourceFiles="$(TargetDir)$(TargetName).pdb" DestinationFolder="1.6\Assemblies\" Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+  </Target>
 </Project>

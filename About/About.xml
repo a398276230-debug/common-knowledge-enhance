@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>RimTalk Common Knowledge Enhance</name>
+  <author>ruaji</author>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <packageId>ruaji.CommonKnowledgeEnhance</packageId>
+  <description>
+    Enhances RimTalk Expand Memory's injection preview dialog with detailed keyword extraction and common knowledge scoring analysis.
+  </description>
+  <modDependencies>
+    <li>
+        <packageId>brrainz.harmony</packageId>
+        <displayName>Harmony</displayName>
+        <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+        <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+      <packageId>cj.rimtalk.expandmemory</packageId>
+      <displayName>RimTalk Expand Memory</displayName>
+      <downloadUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3608181242</downloadUrl>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+    <li>cj.rimtalk.expandmemory</li>
+  </loadAfter>
+</ModMetaData>

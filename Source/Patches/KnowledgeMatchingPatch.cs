@@ -135,11 +135,10 @@ namespace RimTalk.CommonKnowledgeEnhance.Patches
 
             var settings = RimTalkCommonKnowledgeEnhance.Settings;
             
-            // ⭐ 第一轮：构建完整的匹配文本（上下文 + Pawn信息）
+            // 构建完整的匹配文本（上下文 + Pawn信息）
             StringBuilder matchTextBuilder = new StringBuilder();
             matchTextBuilder.Append(context);
             
-            // 添加Pawn信息
             if (currentPawn != null)
             {
                 matchTextBuilder.Append(" ");
@@ -152,17 +151,16 @@ namespace RimTalk.CommonKnowledgeEnhance.Patches
                 matchTextBuilder.Append(BuildPawnInfoText(targetPawn));
             }
             
-            string currentMatchText = matchTextBuilder.ToString();
+            string originalMatchText = matchTextBuilder.ToString();
+            string currentMatchText = originalMatchText;
             
-            // 记录关键词信息（用于调试）
             keywordInfo.ContextKeywords = new List<string> { context };
             keywordInfo.TotalKeywords = 1;
             keywordInfo.PawnKeywordsCount = 0;
 
-            // 收集所有轮次匹配到的常识
             var allMatchedEntries = new HashSet<CommonKnowledgeEntry>();
             
-            // 多轮匹配
+            // 多轮匹配（常识链）
             int maxRounds = settings.enableKnowledgeChaining ? settings.maxChainingRounds : 1;
             
             for (int round = 0; round < maxRounds; round++)
@@ -170,27 +168,24 @@ namespace RimTalk.CommonKnowledgeEnhance.Patches
                 if (string.IsNullOrEmpty(currentMatchText))
                     break;
 
-                // 本轮匹配的常识（第一轮round=0不是常识链，第二轮及以后才是）
                 bool isChaining = round > 0;
-                var roundMatches = MatchKnowledgeByTags(library, currentMatchText, currentPawn, allMatchedEntries, isChaining);
+                string matchText = (round == 0) ? originalMatchText : currentMatchText;
+                var roundMatches = MatchKnowledgeByTags(library, matchText, currentPawn, allMatchedEntries, isChaining);
                 
                 if (roundMatches.Count == 0)
                     break;
 
-                // 添加到总结果
                 foreach (var match in roundMatches)
                 {
                     allMatchedEntries.Add(match);
                 }
 
-                // 如果不启用常识链，只执行一轮
                 if (!settings.enableKnowledgeChaining || round >= maxRounds - 1)
                     break;
 
-                // 准备下一轮：从本轮匹配的常识内容构建新的匹配文本
                 currentMatchText = BuildMatchTextFromKnowledge(roundMatches);
             }
-
+            
             // 按重要性排序并限制数量
             var sortedEntries = allMatchedEntries
                 .OrderByDescending(e => e.importance)
@@ -201,17 +196,19 @@ namespace RimTalk.CommonKnowledgeEnhance.Patches
             // 生成评分信息
             foreach (var entry in sortedEntries)
             {
+                float finalScore = 0.5f + entry.importance;  // 匹配到常识就评分0.5f+重要性
+                
                 scores.Add(new KnowledgeScore
                 {
                     Entry = entry,
-                    Score = entry.importance
+                    Score = finalScore
                 });
 
                 allScores.Add(new KnowledgeScoreDetail
                 {
                     Entry = entry,
                     IsEnabled = entry.isEnabled,
-                    TotalScore = entry.importance,
+                    TotalScore = finalScore,
                     ImportanceScore = entry.importance,
                     MatchedTags = entry.GetTags(),
                     FailReason = "Tag matched"
@@ -221,7 +218,6 @@ namespace RimTalk.CommonKnowledgeEnhance.Patches
             if (sortedEntries.Count == 0)
                 return null;
 
-            // 格式化输出
             var sb = new StringBuilder();
             int index = 1;
             foreach (var entry in sortedEntries)
@@ -234,7 +230,7 @@ namespace RimTalk.CommonKnowledgeEnhance.Patches
         }
 
         /// <summary>
-        /// 通过标签匹配常识（新版：直接用文本包含检查）
+        /// 通过标签匹配常识（新版：支持 Any/All 匹配模式）
         /// </summary>
         /// <param name="isChaining">是否是常识链匹配（第2轮及以后）</param>
         private static List<CommonKnowledgeEntry> MatchKnowledgeByTags(
@@ -267,26 +263,51 @@ namespace RimTalk.CommonKnowledgeEnhance.Patches
                 if (entry.targetPawnId != -1 && (currentPawn == null || entry.targetPawnId != currentPawn.thingIDNumber))
                     continue;
 
-                // ⭐ 检查匹配文本是否包含任一标签
-                var tags = entry.GetTags();
-                bool matched = false;
-
-                foreach (var tag in tags)
-                {
-                    if (matchText.IndexOf(tag, StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        matched = true;
-                        break;
-                    }
-                }
-
-                if (matched)
+                // ⭐ 使用新的 IsMatched 方法（支持 Any/All 模式）
+                if (IsMatched(matchText, entry))
                 {
                     matches.Add(entry);
                 }
             }
 
             return matches;
+        }
+
+        /// <summary>
+        /// 检查文本是否匹配常识条目（支持 Any/All 匹配模式）
+        /// </summary>
+        private static bool IsMatched(string text, CommonKnowledgeEntry entry)
+        {
+            var tags = entry.GetTags();
+            if (tags == null || tags.Count == 0) return false;
+
+            KeywordMatchMode matchMode = ExtendedKnowledgeEntry.GetMatchMode(entry);
+
+            switch (matchMode)
+            {
+                case KeywordMatchMode.Any:
+                    // Any 模式：只要匹配任一标签即可
+                    foreach (var tag in tags)
+                    {
+                        if (string.IsNullOrWhiteSpace(tag)) continue;
+                        if (text.IndexOf(tag, StringComparison.OrdinalIgnoreCase) >= 0)
+                            return true;
+                    }
+                    return false;
+
+                case KeywordMatchMode.All:
+                    // All 模式：必须匹配所有标签
+                    foreach (var tag in tags)
+                    {
+                        if (string.IsNullOrWhiteSpace(tag)) continue;
+                        if (text.IndexOf(tag, StringComparison.OrdinalIgnoreCase) < 0)
+                            return false;
+                    }
+                    return true;
+
+                default:
+                    return false;
+            }
         }
 
         /// <summary>
@@ -317,6 +338,69 @@ namespace RimTalk.CommonKnowledgeEnhance.Patches
             return sb.ToString();
         }
 
+        /// <summary>
+        /// ⭐ 通过向量匹配常识（补充标签未匹配的语义相关常识）
+        /// </summary>
+        private static List<CommonKnowledgeEntry> MatchKnowledgeByVector(
+            CommonKnowledgeLibrary library,
+            string context,
+            Verse.Pawn currentPawn,
+            HashSet<CommonKnowledgeEntry> alreadyMatched,
+            int maxResults,
+            float similarityThreshold)
+        {
+            var matches = new List<CommonKnowledgeEntry>();
+
+            if (string.IsNullOrEmpty(context))
+                return matches;
+
+            try
+            {
+                // 调用向量服务查找相似常识
+                var vectorResults = CommonKnowledgeEnhance.Vector.VectorService.Instance.FindBestLoreIds(context, maxResults * 2);  // 多取一些，因为可能有已匹配的
+                
+                foreach (var (id, similarity) in vectorResults)
+                {
+                    // 检查相似度阈值
+                    if (similarity < similarityThreshold)
+                        continue;
+                    
+                    // 查找对应的常识条目
+                    var entry = library.Entries.FirstOrDefault(e => e.id == id);
+                    
+                    if (entry == null)
+                        continue;
+                    
+                    // 跳过已匹配的
+                    if (alreadyMatched.Contains(entry))
+                        continue;
+                    
+                    // 跳过未启用的
+                    if (!entry.isEnabled)
+                        continue;
+                    
+                    // 检查Pawn限制
+                    if (entry.targetPawnId != -1 && (currentPawn == null || entry.targetPawnId != currentPawn.thingIDNumber))
+                        continue;
+                    
+                    // 添加到结果
+                    matches.Add(entry);
+                    
+                    Log.Message($"[RimTalk-CommonKnowledgeEnhance] Vector match: {entry.tag} (similarity: {similarity:F4})");
+                    
+                    // 达到最大数量就停止
+                    if (matches.Count >= maxResults)
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[RimTalk-CommonKnowledgeEnhance] Error in MatchKnowledgeByVector: {ex}");
+            }
+
+            return matches;
+        }
+        
         /// <summary>
         /// 构建Pawn信息文本
         /// </summary>

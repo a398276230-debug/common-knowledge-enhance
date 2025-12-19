@@ -272,3 +272,15 @@ F:\git library\common-knowledge-enhance\obj\Debug\memory expand knowledge previe
 F:\git library\common-knowledge-enhance\obj\Debug\memory e.0700D4EC.Up2Date
 F:\git library\common-knowledge-enhance\obj\Debug\RimTalk_ExpandedPreview.dll
 F:\git library\common-knowledge-enhance\obj\Debug\RimTalk_ExpandedPreview.pdb
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\obj\Debug\memory expand knowledge preview.csproj.AssemblyReference.cache
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\obj\Debug\memory expand knowledge preview.csproj.CoreCompileInputs.cache
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\obj\Debug\RimTalk_ExpandedPreview.dll
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\obj\Debug\RimTalk_ExpandedPreview.pdb
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\bin\Debug\RimTalk_ExpandedPreview.dll
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\bin\Debug\RimTalk_ExpandedPreview.pdb
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\bin\Debug\RimTalk.dll
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\bin\Debug\RimTalkMemoryPatch.dll
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\bin\Debug\RimTalkMemoryPatch.pdb
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\bin\Debug\RimTalk.pdb
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\obj\Debug\memory e.0700D4EC.Up2Date
+D:\steam\steamapps\common\RimWorld\Mods\common-knowledge-enhance\bin\Debug\Newtonsoft.Json.dll

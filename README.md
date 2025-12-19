@@ -219,7 +219,52 @@
 - **程序集名称**：`RimTalk_ExpandedPreview.dll`
 - **Harmony ID**：`rimtalk.expandedpreview`
 
+## 故障排除
+
+### Harmony 补丁错误
+如果遇到类似以下错误：
+```
+Undefined target method for patch method static System.Void RimTalk.CommonKnowledgeEnhance.Patches.Patch_InitialSize::Postfix
+```
+
+**原因**：Harmony 补丁属性配置不正确，导致无法找到目标方法。
+
+**解决方案**：
+1. 确保每个补丁类都使用完整的 `[HarmonyPatch]` 属性
+2. 不要在父类和子类上混合使用部分补丁属性
+3. 正确的格式：
+```csharp
+[HarmonyPatch(typeof(TargetClass), "MethodName", MethodType.Getter)]
+public static class Patch_MethodName
+{
+    static void Postfix(ref ReturnType __result)
+    {
+        // 补丁代码
+    }
+}
+```
+
+### 存档加载错误
+如果遇到类似以下错误：
+```
+Could not find class RimTalk_ExpandedPreview.SaveGameKeywordComponent
+```
+
+**原因**：存档中保存了旧版本的组件类名，但新版本中该类已被重命名或移除。
+
+**解决方案**：
+1. 这是正常的向后兼容警告，不影响游戏运行
+2. 游戏会自动使用基类替代
+3. 如需清理，可以在新版本下重新保存存档
+
 ## 更新日志
+
+### v1.0.1 (2025-12-17)
+- 🐛 修复：修正 Harmony 补丁配置错误
+  - 移除类级别的 `[HarmonyPatch]` 属性
+  - 在每个嵌套补丁类上使用完整的补丁属性声明
+  - 修复 `DialogInjectionPreviewPatch` 无法正确应用的问题
+- 📝 文档：添加故障排除章节
 
 ### v1.0.0 (2025-12-16)
 - 初始版本

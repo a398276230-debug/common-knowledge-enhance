@@ -5,6 +5,15 @@ using RimTalk.Memory;
 namespace RimTalk.CommonKnowledgeEnhance
 {
     /// <summary>
+    /// 关键词匹配模式
+    /// </summary>
+    public enum KeywordMatchMode
+    {
+        Any,    // 单词匹配：只要出现其中一个词就算
+        All     // 组合匹配：必须同时出现所有标签
+    }
+
+    /// <summary>
     /// 扩展的常识条目
     /// 添加两个新属性：
     /// - canBeExtracted: 是否允许被提取内容（用于常识链）
@@ -20,6 +29,7 @@ namespace RimTalk.CommonKnowledgeEnhance
         {
             public bool canBeExtracted = false;  // 默认禁止被提取
             public bool canBeMatched = false;    // 默认禁止被匹配
+            public KeywordMatchMode matchMode = KeywordMatchMode.Any;  // 匹配模式（默认Any）
         }
 
         /// <summary>
@@ -75,6 +85,24 @@ namespace RimTalk.CommonKnowledgeEnhance
         }
 
         /// <summary>
+        /// 设置匹配模式
+        /// </summary>
+        public static void SetMatchMode(CommonKnowledgeEntry entry, KeywordMatchMode mode)
+        {
+            if (entry == null) return;
+            GetExtendedProperties(entry).matchMode = mode;
+        }
+
+        /// <summary>
+        /// 获取匹配模式
+        /// </summary>
+        public static KeywordMatchMode GetMatchMode(CommonKnowledgeEntry entry)
+        {
+            if (entry == null) return KeywordMatchMode.Any;
+            return GetExtendedProperties(entry).matchMode;
+        }
+
+        /// <summary>
         /// 清理已删除条目的扩展属性
         /// </summary>
         public static void CleanupDeletedEntries(CommonKnowledgeLibrary library)
@@ -111,26 +139,31 @@ namespace RimTalk.CommonKnowledgeEnhance
                 var keys = new System.Collections.Generic.List<string>(extendedProps.Keys);
                 var canBeExtractedList = new System.Collections.Generic.List<bool>();
                 var canBeMatchedList = new System.Collections.Generic.List<bool>();
+                var matchModeList = new System.Collections.Generic.List<KeywordMatchMode>();
 
                 foreach (var key in keys)
                 {
                     canBeExtractedList.Add(extendedProps[key].canBeExtracted);
                     canBeMatchedList.Add(extendedProps[key].canBeMatched);
+                    matchModeList.Add(extendedProps[key].matchMode);
                 }
 
                 Scribe_Collections.Look(ref keys, "extendedKnowledgeKeys", LookMode.Value);
                 Scribe_Collections.Look(ref canBeExtractedList, "canBeExtractedList", LookMode.Value);
                 Scribe_Collections.Look(ref canBeMatchedList, "canBeMatchedList", LookMode.Value);
+                Scribe_Collections.Look(ref matchModeList, "matchModeList", LookMode.Value);
             }
             else if (Scribe.mode == LoadSaveMode.LoadingVars)
             {
                 var keys = new System.Collections.Generic.List<string>();
                 var canBeExtractedList = new System.Collections.Generic.List<bool>();
                 var canBeMatchedList = new System.Collections.Generic.List<bool>();
+                var matchModeList = new System.Collections.Generic.List<KeywordMatchMode>();
 
                 Scribe_Collections.Look(ref keys, "extendedKnowledgeKeys", LookMode.Value);
                 Scribe_Collections.Look(ref canBeExtractedList, "canBeExtractedList", LookMode.Value);
                 Scribe_Collections.Look(ref canBeMatchedList, "canBeMatchedList", LookMode.Value);
+                Scribe_Collections.Look(ref matchModeList, "matchModeList", LookMode.Value);
 
                 if (keys != null && canBeExtractedList != null && canBeMatchedList != null)
                 {
@@ -140,7 +173,8 @@ namespace RimTalk.CommonKnowledgeEnhance
                         extendedProps[keys[i]] = new ExtendedProperties
                         {
                             canBeExtracted = canBeExtractedList[i],
-                            canBeMatched = canBeMatchedList[i]
+                            canBeMatched = canBeMatchedList[i],
+                            matchMode = (matchModeList != null && i < matchModeList.Count) ? matchModeList[i] : KeywordMatchMode.Any
                         };
                     }
                 }
